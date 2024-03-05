@@ -1,3 +1,5 @@
+Written by Jackson Halpin <br>
+
 data download and processing scripts are in `./src/data_processing/`<br>
 
 Building the benchmark requires my [pipeline 1](https://github.com/jacksonh1/orthogroup_generation) and IUPRED2A. You can download IUPRED2A from [here](https://iupred2a.elte.hu/download_new).<br>
