@@ -1,3 +1,8 @@
+data/orthodb_clustered_species_proteins/9606_6/
+benchmark/benchmark_v2/p2_orthogroups/orthogroups/alignments/
+benchmark/benchmark_v2/p2_orthogroups/orthogroups/info_jsons/
+TODO.md
+
 .stignore
 .stfolder/
 !*/
@@ -5,8 +10,7 @@
 make_odb_example_dataset/
 # data/
 development/
-workspace.code-workspace
-pipeline_pt2.code-workspace
+*.code-workspace
 .vscode/
 plan.md
 *.sqlite
