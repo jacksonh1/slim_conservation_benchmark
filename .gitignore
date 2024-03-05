@@ -1,6 +1,6 @@
-data/orthodb_clustered_species_proteins/9606_6/
-benchmark/benchmark_v2/p2_orthogroups/orthogroups/alignments/
-benchmark/benchmark_v2/p2_orthogroups/orthogroups/info_jsons/
+
+*.fasta
+*.json
 TODO.md
 
 .stignore
