@@ -1,5 +1,7 @@
 Written by Jackson Halpin <br>
 
+This work was supported by the National Institutes of Health under Award Number R35GM149227. The content is solely the responsibility of the authors and does not necessarily represent the official views of the National Institutes of Health.
+
 data download and processing scripts are in `./src/data_processing/`<br>
 
 Building the benchmark requires my [pipeline 1](https://github.com/jacksonh1/orthogroup_generation) and IUPRED2A. You can download IUPRED2A from [here](https://iupred2a.elte.hu/download_new).<br>
@@ -13,4 +15,4 @@ The scripts were run in the following order:
 4. `./src/data_processing/benchmark_generation/generate_orthogroup_database/run.sh`
 
 
-They are included as jupyter notebooks for documentation reasons
+They are mostly included as jupyter notebooks for documentation reasons
