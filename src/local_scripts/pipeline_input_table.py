@@ -35,6 +35,11 @@ def multiple_levels(
                 traceback.print_exc()
                 # logger.error(f"{query_geneid} - {og_level} - {err}")
                 print(f"{gene_id} - {og_level} - {err}")
+                continue
+            except FileExistsError as err:
+                print(f"{gene_id} - {og_level} - {err}")
+                print(f"skipping {gene_id} - {og_level}")
+                continue
         else:
             try:
                 pipeline.main_pipeline(config, uniprot_id=gene_id)
@@ -42,6 +47,12 @@ def multiple_levels(
                 traceback.print_exc()
                 # logger.error(f"{query_geneid} - {og_level} - {err}")
                 print(f"{gene_id} - {og_level} - {err}")
+                continue
+            except FileExistsError as err:
+                print(f"{gene_id} - {og_level} - {err}")
+                print(f"skipping {gene_id} - {og_level}")
+                continue
+
 
 
 def main(
@@ -51,17 +62,17 @@ def main(
     odb_gene_id_column: str | None = None,
     uniprot_id_column: str | None = None,
     n_cores=N_CORES,
-    overwrite=False,
+    clear_output_folder=False,
     multiprocess=True,
 ):
     table = pd.read_csv(table_file)
     if Path(config.main_output_folder).exists():
-        if overwrite:
+        if clear_output_folder:
             shutil.rmtree(config.main_output_folder)
         else:
-            raise FileExistsError(
-                f"main_output_folder already exists: {config.main_output_folder}. Use -o flag to overwrite"
-            )
+            print("WARNING: OUTPUT FOLDER ALREADY EXISTS")
+            print("any files that already exist will either be overwritten or skipped (depending on the overwrite flag in the config file)")
+            print("set clear_output_folder=True to delete the folder and re-run the pipeline if you want to start fresh")
 
     if odb_gene_id_column is not None:
         table = table.dropna(subset=[odb_gene_id_column])
@@ -130,10 +141,9 @@ if __name__ == "__main__":
         help="the name of the column in the input table containing the odb_gene_ids",
     )
     parser.add_argument(
-        "-o",
-        "--overwrite",
+        "--clear",
         action="store_true",
-        help="""if flag is provided and the main_output_folder exists, it will be removed and overwritten by the new files. Otherwise, an error will be raised if the folder exists""",
+        help="""if flag is provided and the main_output_folder exists, it will be removed and overwritten by the new files""",
     )
     parser.add_argument(
         "-l",
@@ -154,7 +164,7 @@ if __name__ == "__main__":
         odb_gene_id_column=args.odb_gene_id_column,
         uniprot_id_column=args.uniprot_id_column,
         n_cores=args.n_cores,
-        overwrite=args.overwrite,
+        clear_output_folder=args.clear,
         multiprocess=True,
     )
     # create_filemap.create_filemap(

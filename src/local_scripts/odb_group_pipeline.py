@@ -184,6 +184,10 @@ def main_pipeline(config: orthodb_pipeline_parameters.PipelineParams, uniprot_id
         raise ValueError(output_dict['critical error'])
     
     output_file_prefix = f'{output_dict["query_odb_gene_id"].replace(":", "_")}_{output_dict["oglevel"]}_{output_dict["ogid"]}'
+    og_info_json_file = og_info_json_folder / f'{output_file_prefix}_info.json'
+
+    if og_info_json_file.exists() and not config.overwrite:
+        raise FileExistsError(f'info json file already exists: {og_info_json_file}')
     
     if config.align_params.align:
         mafft_command, aln = cli_wrappers.mafft_align_wrapper(
@@ -204,7 +208,6 @@ def main_pipeline(config: orthodb_pipeline_parameters.PipelineParams, uniprot_id
             output_dict['alignment_clustered_ldos_command'] = mafft_command
 
     output_dict['sequences_clustered_ldos'] = list(output_dict['sequences_clustered_ldos'].keys())
-    og_info_json_file = og_info_json_folder / f'{output_file_prefix}_info.json'
     if config.write_files:
         save_info_json(output_dict, og_info_json_file)
     return og_info_json_file, output_dict
