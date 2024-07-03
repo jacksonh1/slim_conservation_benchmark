@@ -11,8 +11,9 @@ You then have to add the path to the downloaded iupred folder to the file `./src
 The scripts were run in the following order:
 1. `./src/data_processing/all_human_odb_sequences_removed_duplicates/get_all_human_proteins_in_odb.ipynb`
 2. `./src/data_processing/ELM_instances/build_instance_map.ipynb`
-3. `./src/data_processing/benchmark_generation/build_table/benchmark_table.ipynb`
-4. `./src/data_processing/benchmark_generation/generate_orthogroup_database/run.sh`
+3. `./src/data_processing/BENCHMARK_processing/p1_build_table/benchmark_table.ipynb`
+4. `./src/data_processing/BENCHMARK_processing/p2_generate_orthogroup_database/run.sh`
+5. `./src/data_processing/BENCHMARK_processing/p3_run_conservation_pipeline/run.sh`
 
 
 They are mostly included as jupyter notebooks for documentation reasons

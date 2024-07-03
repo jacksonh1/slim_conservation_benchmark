@@ -1,0 +1,165 @@
+clear_files: false
+new_index: false
+output_folder: "../../../../benchmark/benchmark_v3/p3_conservation/conservation_analysis"
+database_filekey: "../../../../benchmark/benchmark_v3/p2_orthogroups/orthogroups/database_key.json"
+table_file: "../../../../benchmark/benchmark_v3/p1_table/benchmark_table_renamed.csv"
+steps_to_run:
+  # - "s1" # setup folderes
+  # - "s2" # define_idrs
+  # - "s3" # find_hit
+  # - "s4" # add_lvlinfo
+  - "s5" # scores
+  # - "s6" # multilevel_plots
+  # - "s7" # output_aln_slice
+  - "s8" # calculate_annotations
+  - "s9" # add_annotations2table
+hit_sequence_params:
+  hit_sequence_search_method: "given_positions"
+idr_params:
+  find_idrs: true
+  # idr_map_file: "./idr_map.json"
+  iupred_cutoff: 0.4
+  gap_merge_threshold: 10
+  idr_min_length: 8
+filter_params:
+  min_num_orthos: 20
+new_score_methods:
+  aln_property_entropy:
+    score_function_name: "aln_property_entropy"
+    score_kwargs:
+      gap_frac_cutoff: 0.2
+      overwrite: true
+  aln_shannon_entropy:
+    score_function_name: "aln_shannon_entropy"
+    score_kwargs:
+      gap_frac_cutoff: 0.2
+      overwrite: true
+  # fragpair_gapless_lf5_rf5_grantham_sim:
+  #   score_function_name: "fragment_pairwise_gapless"
+  #   score_kwargs:
+  #     overwrite: true
+  #     matrix_name: "grantham_similarity"
+  #   lflank: 5
+  #   rflank: 5
+  #   level: "Vertebrata"
+  fragpair_gapless_lf5_rf5_edssmat50:
+    score_function_name: "fragment_pairwise_gapless"
+    score_kwargs:
+      overwrite: true
+      matrix_name: "EDSSMat50"
+    lflank: 5
+    rflank: 5
+    # level: "Vertebrata"
+  fragpair_gapless_lf5_rf5_blosum62:
+    score_function_name: "fragment_pairwise_gapless"
+    score_kwargs:
+      overwrite: true
+      matrix_name: "BLOSUM62"
+    lflank: 5
+    rflank: 5
+    level: "Vertebrata"
+  fragpair_gapless_lf0_rf0_blosum62:
+    score_function_name: "fragment_pairwise_gapless"
+    score_kwargs:
+      overwrite: true
+      matrix_name: "BLOSUM62"
+    lflank: 0
+    rflank: 0
+    level: "Vertebrata"
+  fragpair_gapless_lf0_rf0_grantham:
+    score_function_name: "fragment_pairwise_gapless"
+    score_kwargs:
+      overwrite: true
+      matrix_name: "grantham_similarity_norm"
+    lflank: 0
+    rflank: 0
+    level: "Vertebrata"
+  fragpair_gapless_lf2_rf2_edssmat50:
+    score_function_name: "fragment_pairwise_gapless"
+    score_kwargs:
+      overwrite: true
+      matrix_name: "EDSSMat50"
+    lflank: 2
+    rflank: 2
+    level: "Vertebrata"
+  fragpair_gapless_lf10_rf10_edssmat50:
+    score_function_name: "fragment_pairwise_gapless"
+    score_kwargs:
+      overwrite: true
+      matrix_name: "EDSSMat50"
+    lflank: 10
+    rflank: 10
+    level: "Vertebrata"
+  fragpair_gapless_lf0_rf0_edssmat50:
+    score_function_name: "fragment_pairwise_gapless"
+    score_kwargs:
+      overwrite: true
+      matrix_name: "EDSSMat50"
+    lflank: 0
+    rflank: 0
+    # level: "Vertebrata"
+  fragpair_gapless_needleman_lf0_rf0_edssmat50:
+    score_function_name: "fragment_pairwise_gapless_needleman"
+    score_kwargs:
+      overwrite: true
+      matrix_name: "EDSSMat50"
+    lflank: 0
+    rflank: 0
+    level: "Vertebrata"
+new_embedding_score_methods:
+  frag_pairwise_gapless_embedding_lf5_rf5:
+    score_function_name: "frag_pairwise_gapless_embedding"
+    score_kwargs:
+      overwrite: true
+    lflank: 5
+    rflank: 5
+    # level: "Vertebrata"
+  frag_pairwise_gapless_embedding_lf0_rf0:
+    score_function_name: "frag_pairwise_gapless_embedding"
+    score_kwargs:
+      overwrite: true
+    lflank: 0
+    rflank: 0
+    # level: "Vertebrata"
+pairwise_matrix_to_score_params:
+  matrix_to_score_function_name: "pairwise_matrix_to_kmer_scores"
+  columnwise_score_function_name: "property_entropy"
+  reciprocal_best_match: false
+  similarity_threshold: 1.0
+  bg_cutoff: 50
+  bg_kmer_cutoff: 10
+esm_params:
+  processes: 6
+  # threads: 10
+  # device: "cpu"
+multilevel_plot_params:
+  score_key: null
+  score_type: "zscore"
+aln_slice_params:
+  n_flanking_aas: 20
+  # whole_idr: true
+table_annotation_params:
+  score_key_for_table: null
+  # motif_regex: "P.P.E"
+  levels:
+    # - "Eukaryota"
+    # - "Metazoa"
+    - "Vertebrata"
+    # - "Tetrapoda"
+    # - "Mammalia"
+  annotations:
+    - "json_file"
+    # - "multi_level_plot"
+    # - "hit_start_position"
+    # - "regex"
+    # - "regex_match"
+    # - "regex_match_stpos_in_hit"
+    # - "conservation_string"
+    # - "aln_slice_file"
+    # - "hit_scores"
+    # - "hit_mean_score"
+    # - "hit_z_scores"
+    # - "hit_mean_zscore"
+    # - "best mean z-score over 5 residue window"
+    # - "best mean z-score over 10 residue window"
+clean_analysis_files: false
