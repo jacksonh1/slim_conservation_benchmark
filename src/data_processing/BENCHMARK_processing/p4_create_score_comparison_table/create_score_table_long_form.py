@@ -7,11 +7,14 @@ from typing import Callable
 from local_conservation_scores.tools import capra_singh_2007_scores as cs
 from attrs import asdict, define, field, validators
 from local_config import conservation_pipeline_parameters as conf
+
 # from local_conservation_scores import PairwiseMatrixKmerScoreMethods
 from local_conservation_scores import ConservationScoreMethods, PairwiseMatrixMethods
+
 # from local_conservation_scores import ColumnwiseScoreMethods
 import pandas as pd
 from add_aln_scores_2_table import add_aln_scores_2_df
+
 # from add_pairwise_embedding_scores_2_table import add_pairwise_embedding_scores_2_df
 from add_pairwise_scores_2_table import add_pairwise_scores_2_df
 import yaml
@@ -61,7 +64,7 @@ emb_pairwise_score_methods = [
 # %%
 levels = ["Tetrapoda", "Vertebrata", "Metazoa", "Eukaryota"]
 df = pd.read_csv(
-    "../../../../benchmark/benchmark_v3/p3_conservation/benchmark_table_renamed_ANNOTATED.csv"
+    "../../../../benchmark/benchmark_v4/p3_conservation/benchmark_table_ANNOTATED.csv"
 )
 df = df[df["critical_error"].isnull()]
 score_df = pd.DataFrame()
@@ -89,7 +92,7 @@ for level in levels:
         )
         df2concat["aln_type"] = "MSA - MAFFT"
         df2concat["level"] = level
-        df2concat['score_index'] = score_index
+        df2concat["score_index"] = score_index
         score_df = pd.concat([score_df, df2concat]).reset_index(drop=True)
         score_index += 1
 
@@ -146,7 +149,9 @@ for level in levels:
             if scoremethod.level is not None:
                 if scoremethod.level != level:
                     continue
-            df_temp = add_pairwise_scores_2_df(df, mat_2_score_config, scoremethod.score_key, level, n_cores=50)
+            df_temp = add_pairwise_scores_2_df(
+                df, mat_2_score_config, scoremethod.score_key, level, n_cores=50
+            )
             df2concat = df_temp.melt(
                 id_vars=[i for i in pairwise_id_vars if i in df_temp.columns],
                 value_vars=["hit_scores", "hit_z_scores"],
@@ -155,7 +160,7 @@ for level in levels:
             )
             df2concat["aln_type"] = "Pairwise"
             df2concat["level"] = level
-            df2concat['score_index'] = score_index
+            df2concat["score_index"] = score_index
             score_df = pd.concat([score_df, df2concat]).reset_index(drop=True)
             score_index += 1
 
@@ -188,7 +193,9 @@ for level in levels:
                 if scoremethod.level != level:
                     continue
 
-            df_temp = add_pairwise_scores_2_df(df, mat_2_score_config, scoremethod.score_key, level, n_cores=50)
+            df_temp = add_pairwise_scores_2_df(
+                df, mat_2_score_config, scoremethod.score_key, level, n_cores=50
+            )
             df2concat = df_temp.melt(
                 id_vars=[i for i in pairwise_id_vars if i in df_temp.columns],
                 value_vars=["hit_scores", "hit_z_scores"],
@@ -196,13 +203,15 @@ for level in levels:
                 value_name="score_list",
             )
             df2concat["aln_type"] = "Pairwise embedding"
-            df2concat['ESM model'] = config.esm_params.model_name
+            df2concat["ESM model"] = config.esm_params.model_name
             df2concat["level"] = level
-            df2concat['score_index'] = score_index
+            df2concat["score_index"] = score_index
             score_df = pd.concat([score_df, df2concat]).reset_index(drop=True)
             score_index += 1
 
-score_df.to_csv("../../../../benchmark/benchmark_v3/p3_conservation/score_table_v3.csv", index=False)
+score_df.to_csv(
+    "../../../../benchmark/benchmark_v4/p3_conservation/score_table_v3.csv", index=False
+)
 
 
 # # %%

@@ -1,7 +1,9 @@
-import pandas as pd
-from local_orthoDB_group_pipeline import uniprotid_search
 import argparse
 from pathlib import Path
+
+import pandas as pd
+
+from local_orthoDB_group_pipeline import uniprotid_search
 
 
 def map_uniprot_id(table: pd.DataFrame, uniprotid_column_name: str = 'uniprot_id') -> pd.DataFrame:
@@ -24,6 +26,10 @@ def main(input_file: str, uniprotid_column_name: str = 'uniprot_id', output_file
         output_file = Path(output_file)
     table = pd.read_csv(input_file)
     assert uniprotid_column_name in table.columns, f'column {uniprotid_column_name} not found in input table'
+    # strip leading and trailing whitespaces from uniprot ids.
+    table[uniprotid_column_name+'_stripped'] = table[uniprotid_column_name].str.strip()
+    # strip isoform information from uniprot ids.
+    table[uniprotid_column_name+'_stripped'] = table[uniprotid_column_name+'_stripped'].str.replace(r'-\d+$', '', regex=True)
     table = map_uniprot_id(table, uniprotid_column_name)
     table.to_csv(output_file, index=False)
 
@@ -31,7 +37,9 @@ def main(input_file: str, uniprotid_column_name: str = 'uniprot_id', output_file
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description='''maps a column of uniprot ids in a table to orthoDB gene ids.
-exports a copy of the table with a new column containing the orthoDB gene ids.''',
+exports a copy of the table with a new column containing the orthoDB gene ids.\n
+if the uniprot ids have isoform information, e.g. "P12345-1", the isoform 
+information will be stripped before mapping, e.g. "P12345-1" -> "P12345".''',
         formatter_class = argparse.RawTextHelpFormatter
     )
     parser.add_argument(
@@ -59,5 +67,4 @@ exports a copy of the table with a new column containing the orthoDB gene ids.''
     )
     args = parser.parse_args()
     main(args.input, args.uni_column, args.output)
-
 

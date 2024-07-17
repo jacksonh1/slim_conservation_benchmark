@@ -14,10 +14,10 @@ import pandas as pd
 
 # %%
 
-TABLE_FILE = "./benchmark_table_renamed_ANNOTATED.csv"
+TABLE_FILE = "./benchmark_table_ANNOTATED.csv"
 OUTPUT_FILE = TABLE_FILE.replace(".csv", "_w_pairwise_scores.csv")
-SCORE_KEY="fragment_pairwise_gapless"
-LEVEL="Vertebrata"
+SCORE_KEY = "fragment_pairwise_gapless"
+LEVEL = "Vertebrata"
 N_CORES = round(multiprocessing.cpu_count())
 
 
@@ -84,11 +84,15 @@ def score_pseudo_aln_columns(
     return scores
 
 
-def subseq_df_2_background_scores(subseq_df: pd.DataFrame, score_func: Callable = cs.property_entropy):
+def subseq_df_2_background_scores(
+    subseq_df: pd.DataFrame, score_func: Callable = cs.property_entropy
+):
     background_scores = []
     for position in subseq_df.index:
         background_scores.extend(
-            score_pseudo_aln_columns(subseq_df.loc[position, :].to_list(), score_func=score_func)
+            score_pseudo_aln_columns(
+                subseq_df.loc[position, :].to_list(), score_func=score_func
+            )
         )
     return background_scores
 
@@ -105,11 +109,16 @@ def json_file_2_pairwise_scores(
         raise ValueError(f"score_key {score_key} not in lvlo.conservation_scores")
     pairdict = lvlo.conservation_scores[score_key]
     matrix_dict = import_pairwise_matrices(pairdict["file"])
-    background_scores = subseq_df_2_background_scores(matrix_dict["subseq_df"], score_func=score_func)
+    background_scores = subseq_df_2_background_scores(
+        matrix_dict["subseq_df"], score_func=score_func
+    )
     # background_scores = matrix_dict["subseq_df"].apply(lambda row: score_pseudo_aln_columns(row.tolist()), axis=1).explode().tolist()
-    
+
     flank_hit_st = pairdict["flanked_hit_start_position_in_idr"]
-    assert pairdict["flanked_hit"] == matrix_dict["subseq_df"].loc[flank_hit_st, "reference_kmer"]
+    assert (
+        pairdict["flanked_hit"]
+        == matrix_dict["subseq_df"].loc[flank_hit_st, "reference_kmer"]
+    )
     flank_hit_scores = score_pseudo_aln_columns(
         matrix_dict["subseq_df"].loc[flank_hit_st, :].to_list(),
         score_func=score_func,
@@ -121,12 +130,11 @@ def json_file_2_pairwise_scores(
     flank_hit_z_scores = tools.z_score_comparison(flank_hit_scores, background_scores)
     hit_z_scores = flank_hit_z_scores[hit_slice]
     output_dict = {
-        'hit_sequence': og.hit_sequence,
-        'hit_z_scores': hit_z_scores,
-        'flank_hit_sequence': pairdict['flanked_hit'],
-        'flank_hit_z_scores': flank_hit_z_scores,
-        'background_scores': background_scores,
-        
+        "hit_sequence": og.hit_sequence,
+        "hit_z_scores": hit_z_scores,
+        "flank_hit_sequence": pairdict["flanked_hit"],
+        "flank_hit_z_scores": flank_hit_z_scores,
+        "background_scores": background_scores,
     }
     return output_dict
 
@@ -136,25 +144,33 @@ def process_row(row, score_key, level, score_func=cs.property_entropy):
     reference_index = row["reference_index"]
     colname = f"{score_key}-mean_zscore-{level}"
     try:
-        score_dict = json_file_2_pairwise_scores(json_file, score_key=score_key, level=level, score_func=score_func)
+        score_dict = json_file_2_pairwise_scores(
+            json_file, score_key=score_key, level=level, score_func=score_func
+        )
     except ValueError as e:
         print(f"ValueError: {e}")
-        row[f'{colname}-errors'] = str(e)
+        row[f"{colname}-errors"] = str(e)
         return row
     except IndexError as e:
         print(f"IndexError: {e}")
-        row[f'{colname}-errors'] = f"{str(e)}: probably no ortholog idrs (probably mostly gaps in the alignment)"
+        row[f"{colname}-errors"] = (
+            f"{str(e)}: probably no ortholog idrs (probably mostly gaps in the alignment)"
+        )
         return row
     except ZeroDivisionError as e:
         print(f"ZeroDivisionError: {e}")
-        row[f'{colname}-errors'] = f"{str(e)}: probably no ortholog idrs (probably mostly gaps in the alignment)"
+        row[f"{colname}-errors"] = (
+            f"{str(e)}: probably no ortholog idrs (probably mostly gaps in the alignment)"
+        )
         return row
     row[colname] = np.mean(score_dict["hit_z_scores"])
     return row
 
 
 def process_chunk(chunk, score_key, level, score_func=cs.property_entropy):
-    return chunk.apply(process_row, score_key=score_key, level=level, score_func=score_func, axis=1)
+    return chunk.apply(
+        process_row, score_key=score_key, level=level, score_func=score_func, axis=1
+    )
 
 
 def add_pairwise_embedding_scores_2_df(
@@ -172,9 +188,15 @@ def add_pairwise_embedding_scores_2_df(
     #         return
     chunks = np.array_split(df, n_cores)
     with concurrent.futures.ProcessPoolExecutor() as executor:
-        processed_chunks = list(executor.map(
-            process_chunk, chunks, [score_key] * n_cores, [level] * n_cores, [score_func] * n_cores
-        ))
+        processed_chunks = list(
+            executor.map(
+                process_chunk,
+                chunks,
+                [score_key] * n_cores,
+                [level] * n_cores,
+                [score_func] * n_cores,
+            )
+        )
     df_result = pd.concat(processed_chunks)
     return df_result
 
@@ -205,7 +227,6 @@ if __name__ == "__main__":
     )
 
 
-
 # %%
 
 
@@ -226,7 +247,7 @@ if __name__ == "__main__":
 #         #     continue
 #         # a = time.time()
 #         print(f"Processing {reference_index}...")
-#         try: 
+#         try:
 #             pairscore_dict = json_file_2_pairwise_scores(json_file, score_key=score_key, level=level)
 #             pairscore_map[reference_index] = np.mean(pairscore_dict['hit_z_scores'])
 #         except ValueError as e:

@@ -60,10 +60,10 @@ emb_pairwise_score_methods = [
 # levels = ["Tetrapoda", "Vertebrata", "Metazoa", "Eukaryota"]
 levels = ["Tetrapoda", "Vertebrata", "Metazoa"]
 df = pd.read_csv(
-    "../../../../benchmark/benchmark_v3/p3_conservation/benchmark_table_renamed_ANNOTATED.csv"
+    "../../../../benchmark/benchmark_v4/p3_conservation/benchmark_table_ANNOTATED.csv"
 )
 output_folder = Path(
-    "../../../../benchmark/benchmark_v3/p3_conservation/wide_form_tables_with_scores_v3/"
+    "../../../../benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores_v3/"
 )
 output_folder.mkdir(exist_ok=True, parents=True)
 
@@ -200,7 +200,9 @@ for level in levels:
                 if scoremethod.level != level:
                     continue
             output_file = output_folder / f"{score_index}.csv"
-            df_temp = add_pairwise_scores_2_df(df, mat_2_score_config, scoremethod.score_key, level, n_cores=50)
+            df_temp = add_pairwise_scores_2_df(
+                df, mat_2_score_config, scoremethod.score_key, level, n_cores=50
+            )
             df_temp.to_csv(output_file, index=False)
             score_key_df.loc[score_index, "table_file"] = str(output_file.resolve())
             score_key_df.loc[score_index, "score_index"] = score_index
@@ -220,7 +222,7 @@ for level in levels:
             )
             score_index += 1
 
-# score_df.to_csv("../../../../benchmark/benchmark_v3/p3_conservation/score_table_v2.csv", index=False)
+# score_df.to_csv("../../../../benchmark/benchmark_v4/p3_conservation/score_table_v2.csv", index=False)
 score_key_df.to_csv(output_folder / f"score_key.csv", index=False)
 
 # # %%

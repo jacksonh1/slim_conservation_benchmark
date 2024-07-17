@@ -1,2 +1,0 @@
-recursive-include src/local_data *
-recursive-include src/local_env_variables *

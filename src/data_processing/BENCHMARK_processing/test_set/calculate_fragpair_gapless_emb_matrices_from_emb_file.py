@@ -271,9 +271,7 @@ def main(
 
 
 N_CORES = 60
-TABLE_FILE = (
-    "../p3_conservation_analysis_pipeline/benchmark_table_renamed_ANNOTATED.csv"
-)
+TABLE_FILE = "../p3_conservation_analysis_pipeline/benchmark_table_ANNOTATED.csv"
 EMBEDDING_MAPPING_FILE = "./emb_mappings.csv"
 SCORE_KEY = "fragpair_gapless_embedding_lf5_rf5"
 OUTPUT_FOLDER = "./embedding_scores"

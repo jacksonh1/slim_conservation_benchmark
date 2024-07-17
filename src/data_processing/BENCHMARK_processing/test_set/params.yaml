@@ -1,7 +1,7 @@
 clear_files: true
-output_folder: "../../../../benchmark/benchmark_v3/test/output"
-database_filekey: "../../../../benchmark/benchmark_v3/p2_orthogroups/orthogroups/database_key.json"
-table_file: "../../../../benchmark/benchmark_v3/p1_table/benchmark_table_renamed_testset.csv"
+output_folder: "../../../../benchmark/benchmark_v4/test/output"
+database_filekey: "../../../../benchmark/benchmark_v4/p2_orthogroups/orthogroups/database_key.json"
+table_file: "../../../../benchmark/benchmark_v4/p1_table/benchmark_table_testset.csv"
 new_index: true
 steps_to_run:
   - "s1"

@@ -1,7 +1,6 @@
 import sys
 
-import local_env_variables.env_variables as env
-IUPRED_DIR = str(env.IUPRED_DIR)
+IUPRED_DIR = str("/mnt/shared/shared_data/iupred2a/")
 
 sys.path.append(IUPRED_DIR)
 import iupred2a_lib as iup

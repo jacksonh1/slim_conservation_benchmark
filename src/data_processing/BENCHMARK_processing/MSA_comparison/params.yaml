@@ -1,0 +1,69 @@
+clear_files: true
+new_index: false
+output_folder: "../../../../benchmark/benchmark_v4/MSA_comparison/conservation_analysis"
+database_filekey: "../../../../benchmark/benchmark_v4/p2_orthogroups/orthogroups/database_key-MSA_comparison.json"
+table_file: "../../../../benchmark/benchmark_v4/MSA_comparison/benchmark_table_MSA_comparison.csv"
+steps_to_run:
+  - "s1"
+  - "s2"
+  - "s3"
+  - "s4"
+  - "s5"
+  # - "s6"
+  - "s7"
+  - "s8"
+  - "s9"
+hit_sequence_params:
+  hit_sequence_search_method: "given_positions"
+idr_params:
+  find_idrs: true
+  # idr_map_file: "./idr_map.json"
+  iupred_cutoff: 0.4
+  gap_merge_threshold: 10
+  idr_min_length: 8
+filter_params:
+  min_num_orthos: 20
+new_score_methods:
+  aln_property_entropy:
+    score_function_name: "aln_property_entropy"
+    score_kwargs:
+      gap_frac_cutoff: 0.2
+      overwrite: true
+  aln_shannon_entropy:
+    score_function_name: "aln_shannon_entropy"
+    score_kwargs:
+      gap_frac_cutoff: 0.2
+      overwrite: true
+multilevel_plot_params:
+  score_key: "aln_shannon_entropy"
+  score_type: "zscore"
+aln_slice_params:
+  n_flanking_aas: 20
+  # whole_idr: true
+table_annotation_params:
+  score_key_for_table: aln_shannon_entropy
+  # motif_regex: "P.P.E"
+  levels:
+    # - "Eukaryota"
+    # - "Metazoa"
+    - "Metazoa"
+    - "Metazoa-clustalo"
+    - "Metazoa-Muscle"
+    # - "Tetrapoda"
+    # - "Mammalia"
+  annotations:
+    - "json_file"
+    # - "multi_level_plot"
+    # - "hit_start_position"
+    # - "regex"
+    # - "regex_match"
+    # - "regex_match_stpos_in_hit"
+    # - "conservation_string"
+    # - "aln_slice_file"
+    - "hit_scores"
+    - "hit_mean_score"
+    - "hit_z_scores"
+    - "hit_mean_zscore"
+    # - "best mean z-score over 5 residue window"
+    # - "best mean z-score over 10 residue window"
+clean_analysis_files: false

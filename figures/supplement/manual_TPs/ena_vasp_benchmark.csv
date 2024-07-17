@@ -1,0 +1,37 @@
+Organism,name,flanked_hit,UniprotID,hit start position,hit end position,ELM_motif_class,gene_id,reference
+Homo sapiens,AB1IP_HUMAN,LDDPELPPPPPDFME,Q7Z5R6,567,571,enah_LPPPP_FPPPP,9606_0:00294e, doi: 10.1016/j.devcel.2004.07.021. COIP
+Homo sapiens,AB1IP_HUMAN,QYEDDLPPPPADPVL,Q7Z5R6,127,131,enah_LPPPP_FPPPP,9606_0:00294e, doi: 10.1016/j.devcel.2004.07.021. COIP
+Homo sapiens,AB1IP_HUMAN,VLDLPLPPPPPEPLS,Q7Z5R6,140,144,enah_LPPPP_FPPPP,9606_0:00294e, doi: 10.1016/j.devcel.2004.07.021. COIP
+Homo sapiens,AB1IP_HUMAN,APKSSLPPPPPVRRS,Q7Z5R6,515,519,enah_LPPPP_FPPPP,9606_0:00294e, doi: 10.1016/j.devcel.2004.07.021. COIP
+Homo sapiens,AB1IP_HUMAN,PPDDFLPPPPPPPPL,Q7Z5R6,553,557,enah_LPPPP_FPPPP,9606_0:00294e, doi: 10.1016/j.devcel.2004.07.021. COIP
+Homo sapiens,AB1IP_HUMAN,IAGSELPPPPPPPPA,Q7Z5R6,597,601,enah_LPPPP_FPPPP,9606_0:00294e, doi: 10.1016/j.devcel.2004.07.021. COIP
+Homo sapiens,ABI3_HUMAN,GDELGLPPPPPGFGP,Q9P2A4,289,293,enah_LPPPP_FPPPP,9606_0:003dae,"theresa + Chen XJ, Squarr AJ, Stephan R, Chen B, Higgins TE, Barry DJ, Martin MC, Rosen MK, Bogdan S, Way M. 2014. Ena/VASP proteins cooperate with the WAVE complex to regulate the actin cytoskeleton. Developmental Cell 30:569–584. "
+Homo sapiens,ABI3_HUMAN,PLPLDLPPPPPLDGD,Q9P2A4,276,280,enah_LPPPP_FPPPP,9606_0:003dae,"theresa + Chen XJ, Squarr AJ, Stephan R, Chen B, Higgins TE, Barry DJ, Martin MC, Rosen MK, Bogdan S, Way M. 2014. Ena/VASP proteins cooperate with the WAVE complex to regulate the actin cytoskeleton. Developmental Cell 30:569–584. "
+Homo sapiens,ANK3_HUMAN,VAYIEFPPPPPLDAD,Q12955,3253,3257,enah_LPPPP_FPPPP,9606_0:0027f1,ELM
+Homo sapiens,FAT1_HUMAN,SVAPNLPPPPPSNSP,Q14517,4307,4311,enah_LPPPP_FPPPP,9606_0:00122c,"Moeller MJ, Soofi A, Braun GS, Li X, Watzl C, Kriz W, Holzman LB. 2004. Protocadherin FAT1 binds Ena/VASP proteins and is necessary for actin dynamics and cell polarization. The EMBO Journal 23:3769–3779. "
+Homo sapiens,FAT1_HUMAN,DIESDFPPPPEDFPA,Q14517,4434,4438,enah_LPPPP_FPPPP,9606_0:00122c,"Moeller MJ, Soofi A, Braun GS, Li X, Watzl C, Kriz W, Holzman LB. 2004. Protocadherin FAT1 binds Ena/VASP proteins and is necessary for actin dynamics and cell polarization. The EMBO Journal 23:3769–3779. "
+Homo sapiens,FBLI1_HUMAN,PMEEELPPPPAEPVE,Q8WUP2,165,169,enah_LPPPP_FPPPP,9606_0:000661,10.1074/jbc.M512107200 - co-IP
+Homo sapiens,FBLI1_HUMAN,PDLDLLPPPPPPPPV,Q8WUP2,103,107,enah_LPPPP_FPPPP,9606_0:000661,10.1074/jbc.M512107200 - co-IP
+Homo sapiens,FYB1_HUMAN,GSGGIFPPPPDDDIY,O15117,625,629,enah_LPPPP_FPPPP,9606_0:0015fb, 10.1083/jcb.149.1.181 - spot array
+Homo sapiens,FYB1_HUMAN,YSTTSLPPPPPSHPA,O15117,401,405,enah_LPPPP_FPPPP,9606_0:0015fb, 10.1083/jcb.149.1.181 - spot array
+Homo sapiens,LPP_HUMAN,GEGDFLPPPPPPLDD,Q93052,67,71,enah_LPPPP_FPPPP,9606_0:000d90,theresa and some other paper
+Homo sapiens,LPP_HUMAN,SISGNFPPPPPLDEE,Q93052,87,91,enah_LPPPP_FPPPP,9606_0:000d90,theresa and some other paper
+Homo sapiens,NHSL1_HUMAN,DRSPFLPPPPPVTDC,Q5SYE7,953,957,enah_LPPPP_FPPPP,9606_0:001b40,theresa
+Homo sapiens,NHSL1_HUMAN,PHSPVFPPPPPEALI,Q5SYE7,974,978,enah_LPPPP_FPPPP,9606_0:001b40,theresa
+Homo sapiens,PALLD_HUMAN,DHFQHFPPPPPILET,Q8WX93,561,565,enah_LPPPP_FPPPP,9606_0:00141f,doi: 10.1002/cm.10173. SPOT array
+Homo sapiens,PCARE_HUMAN,GNLEHLPPPPMEVLM,A6NGG8,829,833,enah_LPPPP_FPPPP,9606_0:00094d,theresa and some other paper
+Homo sapiens,RAPH1_HUMAN,PSDSDFPPPPPETEL,Q70E73,1072,1076,enah_LPPPP_FPPPP,9606_0:000b76,10.1016/j.devcel.2004.07.024 - spot array
+Homo sapiens,RAPH1_HUMAN,QPSPPLPPPPPPPPP,Q70E73,627,631,enah_LPPPP_FPPPP,9606_0:000b76,10.1016/j.devcel.2004.07.024 - spot array
+Homo sapiens,RAPH1_HUMAN,MDDMALPPPPPELLS,Q70E73,1201,1205,enah_LPPPP_FPPPP,9606_0:000b76,10.1016/j.devcel.2004.07.024 - spot array
+Homo sapiens,RAPH1_HUMAN,VPSPDFPPPPPESSL,Q70E73,915,919,enah_LPPPP_FPPPP,9606_0:000b76,10.1016/j.devcel.2004.07.024 - spot array
+Homo sapiens,RAPH1_HUMAN,ESSLVFPPPPPSPVP,Q70E73,926,930,enah_LPPPP_FPPPP,9606_0:000b76,10.1016/j.devcel.2004.07.024 - spot array
+Homo sapiens,RAPH1_HUMAN,QIASQFPPPPTPPAM,Q70E73,868,872,enah_LPPPP_FPPPP,9606_0:000b76,10.1016/j.devcel.2004.07.024 - spot array
+Homo sapiens,ROBO1_HUMAN,NWADLLPPPPAHPPP,Q9Y6N7,1185,1189,enah_LPPPP_FPPPP,9606_0:000e6f,ELM; 10.1016/s0092-8674(00)80883-1
+Homo sapiens,ROBO1_HUMAN,TYTDDLPPPPVPPPA,Q9Y6N7,1479,1483,enah_LPPPP_FPPPP,9606_0:000e6f,ELM; 10.1016/s0092-8674(00)80883-1
+Homo sapiens,SHIP2_HUMAN,LPPPDFPPPPLPDSA,O15357,1052,1056,enah_LPPPP_FPPPP,9606_0:002a4b,
+Homo sapiens,SHRM3_HUMAN,PTFEPLPPPPPPPPS,Q8TF72,1525,1529,enah_LPPPP_FPPPP,9606_0:0012c3,"theresa and Plageman TF, Chung MI, Lou M, Smith AN, Hildebrand JD, Wallingford JB, Lang RA. 2010. Pax6-dependent Shroom3 expression regulates apical constriction during lens placode invagination. Development 137:405–415. "
+Homo sapiens,SHRM3_HUMAN,YSMDDFPPPPPHTVC,Q8TF72,1545,1549,enah_LPPPP_FPPPP,9606_0:0012c3,"theresa and Plageman TF, Chung MI, Lou M, Smith AN, Hildebrand JD, Wallingford JB, Lang RA. 2010. Pax6-dependent Shroom3 expression regulates apical constriction during lens placode invagination. Development 137:405–415. "
+Homo sapiens,VINC_HUMAN,PQEPDFPPPPPDLEQ,P18206,841,845,enah_LPPPP_FPPPP,9606_0:002935,ELM
+Homo sapiens,XIRP1_HUMAN,AEDLPLPPPPALEDL,Q702N8,23,27,enah_LPPPP_FPPPP,9606_0:000f47,"ELM + van der Ven PFM, Ehler E, Vakeel P, Eulitz S, Schenk JA, Milting H, Micheel B, Fürst DO. 2006. Unusual splicing events result in distinct Xin isoforms that associate differentially with filamin c and Mena/VASP. Experimental Cell Research 312:2154–2167. "
+Homo sapiens,ZYX_HUMAN,ALGGAFPPPPPPIEE,Q15942,92,96,enah_LPPPP_FPPPP,9606_0:001d2c,"ELM and Drees B, Friederich E, Fradelizi J, Louvard D, Beckerle MC, Golsteyn RM. 2000. Characterization of the interaction between zyxin and members of the Ena/vasodilator-stimulated phosphoprotein family of proteins. The Journal of Biological Chemistry 275:22503–22511. "
+Homo sapiens,ZYX_HUMAN,PEDFPLPPPPLAGDG,Q15942,72,76,enah_LPPPP_FPPPP,9606_0:001d2c,"ELM and Drees B, Friederich E, Fradelizi J, Louvard D, Beckerle MC, Golsteyn RM. 2000. Characterization of the interaction between zyxin and members of the Ena/vasodilator-stimulated phosphoprotein family of proteins. The Journal of Biological Chemistry 275:22503–22511. "

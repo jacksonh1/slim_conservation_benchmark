@@ -15,5 +15,5 @@ align_params:
   align: true
   n_align_threads: 1
 
-main_output_folder: "../../../../benchmark/benchmark_v3/p2_orthogroups/orthogroups"
+main_output_folder: "../../../../benchmark/benchmark_v4/p2_orthogroups/orthogroups"
 overwrite: false
