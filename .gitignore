@@ -7,7 +7,8 @@ figures/figure1/example_alignments/LPP/
 figures/figure1/example_alignments/ena_motif_alignments/
 figures/figure1/example_alignments/RIAM/
 
-
+*.html
+*.eps
 .stignore
 .stfolder/
 !*/
