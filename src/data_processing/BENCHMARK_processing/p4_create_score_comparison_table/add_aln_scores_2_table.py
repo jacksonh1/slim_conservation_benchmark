@@ -20,7 +20,6 @@ class AlnScoreResults:
     background_scores: list[float] | None = None
 
 
-
 N_CORES = round(multiprocessing.cpu_count())
 
 # def get_hit_aln_scores(lvlo: group_tools.LevelAlnScore):
@@ -60,7 +59,7 @@ N_CORES = round(multiprocessing.cpu_count())
 #     output_dict = {
 #         "hit_scores": score_o.hit_scores,
 #         "hit_sequence": og.hit_sequence,
-#         "score_function_name": score_o.score_function_name,
+#         "function_name": score_o.function_name,
 #     }
 #     for k,v in score_o.score_params.items():
 #         output_dict[k] = v
@@ -75,7 +74,7 @@ def process_row(row, score_key, level):
     json_file = row["json_file"]
     reference_index = row["reference_index"]
     og = group_tools.ConserGene(json_file)
-    row['score_key'] = score_key
+    row["score_key"] = score_key
     if score_key not in og.info_dict["orthogroups"][level]["conservation_scores"]:
         row["errors"] = f"error - score_key ({score_key}) not in json file"
         return row
@@ -83,14 +82,18 @@ def process_row(row, score_key, level):
         level,
         score_key,
     )
-    row['hit_scores'] = score_o.hit_scores
-    row['score_function_name'] = score_o.score_function_name
-    for k,v in score_o.score_params.items():
+    row["hit_scores"] = score_o.hit_scores
+    row["function_name"] = score_o.function_name
+    for k, v in score_o.score_params.items():
         row[k] = v
     if score_o.z_score_failure is not None:
-        row['errors'] = re.sub(r'not enough background scores to calculate z-score.*', 'not enough background scores to calculate z-score', str(score_o.z_score_failure))
+        row["errors"] = re.sub(
+            r"not enough background scores to calculate z-score.*",
+            "not enough background scores to calculate z-score",
+            str(score_o.z_score_failure),
+        )
     else:
-        row['hit_z_scores'] = score_o.hit_z_scores
+        row["hit_z_scores"] = score_o.hit_z_scores
         row["n_bg_scores"] = len(score_o.bg_scores)
         row["bg_STD"] = np.std(score_o.bg_scores)
         row["bg_mean"] = np.mean(score_o.bg_scores)
@@ -109,12 +112,14 @@ def add_aln_scores_2_df(
 ):
     chunks = np.array_split(df, n_cores)
     with concurrent.futures.ProcessPoolExecutor() as executor:
-        processed_chunks = list(executor.map(
-            process_chunk, chunks, [score_key] * n_cores, [level] * n_cores
-        ))
+        processed_chunks = list(
+            executor.map(
+                process_chunk, chunks, [score_key] * n_cores, [level] * n_cores
+            )
+        )
     df_result = pd.concat(processed_chunks)
     return df_result
-    
+
 
 def add_aln_scores_2_table_file(
     table_file: str | Path,

@@ -1,15 +1,9 @@
 # %%
 from pathlib import Path
-from dataclasses import dataclass
-
-import local_conservation_analysis_pipeline.group_conservation_objects as group_tools
-from typing import Callable
-from local_conservation_scores.tools import capra_singh_2007_scores as cs
-from attrs import asdict, define, field, validators
 from local_config import conservation_pipeline_parameters as conf
 
 # from local_conservation_scores import PairwiseMatrixKmerScoreMethods
-from local_conservation_scores import ConservationScoreMethods, PairwiseMatrixMethods
+from local_conservation_scores import ConservationScoreMethods, PairKmerAlnMethods
 
 # from local_conservation_scores import ColumnwiseScoreMethods
 import pandas as pd
@@ -23,7 +17,7 @@ import yaml
 
 # PAIRWISEMETHODS = PairwiseMatrixKmerScoreMethods()
 # COLSCOREMETHODS = ColumnwiseScoreMethods()
-PAIRWISEMATFUNCS = PairwiseMatrixMethods()
+PAIRKMERALNFUNCS = PairKmerAlnMethods()
 ALNSCORES = ConservationScoreMethods()
 
 
@@ -47,9 +41,9 @@ score_index = 0
 aln_score_methods = []
 pairwise_score_methods = []
 for scoremethod in config.score_methods:
-    if hasattr(ALNSCORES, scoremethod.score_function_name):
+    if hasattr(ALNSCORES, scoremethod.function_name):
         aln_score_methods.append(scoremethod)
-    elif hasattr(PAIRWISEMATFUNCS, scoremethod.score_function_name):
+    elif hasattr(PAIRKMERALNFUNCS, scoremethod.function_name):
         pairwise_score_methods.append(scoremethod)
 emb_pairwise_score_methods = [
     scoremethod for scoremethod in config.embedding_score_methods
@@ -63,7 +57,7 @@ df = pd.read_csv(
     "../../../../benchmark/benchmark_v4/p3_conservation/benchmark_table_ANNOTATED.csv"
 )
 output_folder = Path(
-    "../../../../benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores_v3/"
+    "../../../../benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/"
 )
 output_folder.mkdir(exist_ok=True, parents=True)
 
@@ -75,7 +69,7 @@ aln_id_vars = [
     "reference_index",
     "score_key",
     "errors",
-    "score_function_name",
+    "function_name",
     "n_bg_scores",
     "bg_STD",
     "bg_mean",
@@ -103,12 +97,10 @@ pairwise_id_vars = [
     "reference_index",
     "score_key",
     "errors",
-    "score_function_name",
+    "function_name",
     "k",
-    "similarity_threshold",
-    "reciprocal_best_match",
     "columnwise_score_function_name",
-    "matrix_to_score_function_name",
+    "kmer_conservation_function_name",
     "matrix_name",
     "lflank",
     "rflank",
@@ -116,26 +108,20 @@ pairwise_id_vars = [
     "bg_STD",
     "bg_mean",
 ]
-kmerscoreobj = config.pairwise_matrix_to_score_params
+kmerscoreobj = config.pairk_conservation_params
 # variables to modify
 # columnwise_score_function_name
-# reciprocal_best_match
-# similarity_threshold
-thresholds = [1.0]
-reciprocal_best_match = [True, False]
 columnwise_score_function_name = ["shannon_entropy", "property_entropy"]
 mat_2_score_configs = []
-for threshold in thresholds:
-    for r in reciprocal_best_match:
-        for c in columnwise_score_function_name:
-            mat_2_score_configs.append(
-                conf.PairMatrixToScoreConf(
-                    matrix_to_score_function_name="pairwise_matrix_to_kmer_scores",
-                    columnwise_score_function_name=c,
-                    reciprocal_best_match=r,
-                    similarity_threshold=threshold,
-                )
-            )
+for c in columnwise_score_function_name:
+    mat_2_score_configs.append(
+        conf.PairKmerConservationConf(
+            kmer_conservation_function_name=config.pairk_conservation_params.kmer_conservation_function_name,
+            columnwise_score_function_name=c,
+            bg_cutoff=config.pairk_conservation_params.bg_cutoff,
+            bg_kmer_cutoff=config.pairk_conservation_params.bg_kmer_cutoff,
+        )
+    )
 
 
 for i in mat_2_score_configs:
@@ -159,14 +145,8 @@ for level in levels:
             score_key_df.loc[score_index, "score_key"] = scoremethod.score_key
             score_key_df.loc[score_index, "lflank"] = scoremethod.lflank
             score_key_df.loc[score_index, "rflank"] = scoremethod.rflank
-            score_key_df.loc[score_index, "reciprocal_best_match"] = (
-                mat_2_score_config.reciprocal_best_match
-            )
             score_key_df.loc[score_index, "columnwise_score_function_name"] = (
                 mat_2_score_config.columnwise_score_function_name
-            )
-            score_key_df.loc[score_index, "similarity_threshold"] = (
-                mat_2_score_config.similarity_threshold
             )
             score_index += 1
 
@@ -175,22 +155,18 @@ for level in levels:
 # // embedding pairwise scores
 # ==============================================================================
 # %%
-thresholds = [1.0]
-reciprocal_best_match = [False]
 columnwise_score_function_name = ["shannon_entropy", "property_entropy"]
 # columnwise_score_function_name = ["shannon_entropy"]
 mat_2_score_configs = []
-for threshold in thresholds:
-    for r in reciprocal_best_match:
-        for c in columnwise_score_function_name:
-            mat_2_score_configs.append(
-                conf.PairMatrixToScoreConf(
-                    matrix_to_score_function_name="pairwise_matrix_to_kmer_scores",
-                    columnwise_score_function_name=c,
-                    reciprocal_best_match=r,
-                    similarity_threshold=threshold,
-                )
-            )
+for c in columnwise_score_function_name:
+    mat_2_score_configs.append(
+        conf.PairKmerConservationConf(
+            kmer_conservation_function_name=config.pairk_conservation_params.kmer_conservation_function_name,
+            columnwise_score_function_name=c,
+            bg_cutoff=config.pairk_conservation_params.bg_cutoff,
+            bg_kmer_cutoff=config.pairk_conservation_params.bg_kmer_cutoff,
+        )
+    )
 # levels = ["Tetrapoda", "Vertebrata", "Metazoa", "Eukaryota"]
 levels = ["Tetrapoda", "Vertebrata", "Metazoa"]
 for level in levels:
@@ -211,14 +187,8 @@ for level in levels:
             score_key_df.loc[score_index, "score_key"] = scoremethod.score_key
             score_key_df.loc[score_index, "lflank"] = scoremethod.lflank
             score_key_df.loc[score_index, "rflank"] = scoremethod.rflank
-            score_key_df.loc[score_index, "reciprocal_best_match"] = (
-                mat_2_score_config.reciprocal_best_match
-            )
             score_key_df.loc[score_index, "columnwise_score_function_name"] = (
                 mat_2_score_config.columnwise_score_function_name
-            )
-            score_key_df.loc[score_index, "similarity_threshold"] = (
-                mat_2_score_config.similarity_threshold
             )
             score_index += 1
 

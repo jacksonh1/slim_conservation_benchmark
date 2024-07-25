@@ -9,7 +9,7 @@ from attrs import asdict, define, field, validators
 from local_config import conservation_pipeline_parameters as conf
 
 # from local_conservation_scores import PairwiseMatrixKmerScoreMethods
-from local_conservation_scores import ConservationScoreMethods, PairwiseMatrixMethods
+from local_conservation_scores import ConservationScoreMethods, PairKmerAlnMethods
 
 # from local_conservation_scores import ColumnwiseScoreMethods
 import pandas as pd
@@ -26,7 +26,7 @@ import yaml
 
 # PAIRWISEMETHODS = PairwiseMatrixKmerScoreMethods()
 # COLSCOREMETHODS = ColumnwiseScoreMethods()
-PAIRWISEMATFUNCS = PairwiseMatrixMethods()
+PAIRWISEMATFUNCS = PairKmerAlnMethods()
 ALNSCORES = ConservationScoreMethods()
 
 
@@ -50,9 +50,9 @@ score_index = 0
 aln_score_methods = []
 pairwise_score_methods = []
 for scoremethod in config.score_methods:
-    if hasattr(ALNSCORES, scoremethod.score_function_name):
+    if hasattr(ALNSCORES, scoremethod.function_name):
         aln_score_methods.append(scoremethod)
-    elif hasattr(PAIRWISEMATFUNCS, scoremethod.score_function_name):
+    elif hasattr(PAIRWISEMATFUNCS, scoremethod.function_name):
         pairwise_score_methods.append(scoremethod)
 emb_pairwise_score_methods = [
     scoremethod for scoremethod in config.embedding_score_methods
@@ -73,7 +73,7 @@ aln_id_vars = [
     "reference_index",
     "score_key",
     "errors",
-    "score_function_name",
+    "function_name",
     "n_bg_scores",
     "bg_STD",
     "bg_mean",
@@ -104,12 +104,12 @@ pairwise_id_vars = [
     "reference_index",
     "score_key",
     "errors",
-    "score_function_name",
+    "function_name",
     "k",
     "similarity_threshold",
     "reciprocal_best_match",
     "columnwise_score_function_name",
-    "matrix_to_score_function_name",
+    "kmer_conservation_function_name",
     "matrix_name",
     "lflank",
     "rflank",
@@ -117,7 +117,7 @@ pairwise_id_vars = [
     "bg_STD",
     "bg_mean",
 ]
-kmerscoreobj = config.pairwise_matrix_to_score_params
+kmerscoreobj = config.pairk_conservation_params
 # variables to modify
 # columnwise_score_function_name
 # reciprocal_best_match
@@ -131,8 +131,8 @@ for threshold in thresholds:
     for r in reciprocal_best_match:
         for c in columnwise_score_function_name:
             mat_2_score_configs.append(
-                conf.PairMatrixToScoreConf(
-                    matrix_to_score_function_name="pairwise_matrix_to_kmer_scores",
+                conf.PairKmerConservationConf(
+                    kmer_conservation_function_name="pairwise_matrix_to_kmer_scores",
                     columnwise_score_function_name=c,
                     reciprocal_best_match=r,
                     similarity_threshold=threshold,
@@ -178,8 +178,8 @@ for threshold in thresholds:
     for r in reciprocal_best_match:
         for c in columnwise_score_function_name:
             mat_2_score_configs.append(
-                conf.PairMatrixToScoreConf(
-                    matrix_to_score_function_name="pairwise_matrix_to_kmer_scores",
+                conf.PairKmerConservationConf(
+                    kmer_conservation_function_name="pairwise_matrix_to_kmer_scores",
                     columnwise_score_function_name=c,
                     reciprocal_best_match=r,
                     similarity_threshold=threshold,

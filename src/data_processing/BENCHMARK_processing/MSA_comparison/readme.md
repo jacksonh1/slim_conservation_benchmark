@@ -11,4 +11,5 @@ commands (in order):
 - activate slim_conservation_scoring conda environment
     - `mamba activate slim_conservation_scoring`
 - run conservation scoring:
-    - `nohup python "../../../local_scripts/conservation_analysis.py" -c "./params.yaml" -n 60`
+    - `nohup bash ./score_conservation.sh > score_conservation.out &`
+    - (contents of ./score_conservation.sh is just one line - `python "../../../local_scripts/conservation_analysis.py" -c "./params.yaml" -n 60`)

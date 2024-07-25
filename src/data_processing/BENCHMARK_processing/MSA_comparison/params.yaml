@@ -23,20 +23,20 @@ idr_params:
   idr_min_length: 8
 filter_params:
   min_num_orthos: 20
-new_score_methods:
+msa_score_methods:
   aln_property_entropy:
-    score_function_name: "aln_property_entropy"
-    score_kwargs:
+    function_name: "aln_property_entropy"
+    function_params:
       gap_frac_cutoff: 0.2
       overwrite: true
   aln_shannon_entropy:
-    score_function_name: "aln_shannon_entropy"
-    score_kwargs:
+    function_name: "aln_shannon_entropy"
+    function_params:
       gap_frac_cutoff: 0.2
       overwrite: true
 multilevel_plot_params:
   score_key: "aln_shannon_entropy"
-  score_type: "zscore"
+  score_type: "z_score"
 aln_slice_params:
   n_flanking_aas: 20
   # whole_idr: true

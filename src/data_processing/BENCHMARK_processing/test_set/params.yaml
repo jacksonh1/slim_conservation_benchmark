@@ -1,8 +1,8 @@
-clear_files: true
+clear_files: false
 output_folder: "../../../../benchmark/benchmark_v4/test/output"
 database_filekey: "../../../../benchmark/benchmark_v4/p2_orthogroups/orthogroups/database_key.json"
 table_file: "../../../../benchmark/benchmark_v4/p1_table/benchmark_table_testset.csv"
-new_index: true
+new_index: false
 steps_to_run:
   - "s1"
   - "s2"
@@ -23,71 +23,28 @@ idr_params:
   idr_min_length: 8
 filter_params:
   min_num_orthos: 20
-# new_score_methods:
-#   aln_property_entropy:
-#     score_function_name: "aln_property_entropy"
-#     score_kwargs:
-#       gap_frac_cutoff: 0.2
-#       overwrite: true
-  # fragpair_gapless_lf5_rf5_grantham:
-  #   score_function_name: "fragment_pairwise_gapless"
-  #   score_kwargs:
-  #     overwrite: true
-  #     aligner_matrix_name: "grantham_similarity"
-  #   lflank: 5
-  #   rflank: 5
-  #   level: "Vertebrata"
-  # fragpair_gapless_lf5_rf5_edssmat50:
-  #   score_function_name: "fragment_pairwise_gapless"
-  #   score_kwargs:
-  #     overwrite: true
-  #     aligner_matrix_name: "EDSSMat50"
-  #   lflank: 5
-  #   rflank: 5
-  #   level: "Vertebrata"
-#   fragpair_gapless_lf2_rf2_edssmat50:
-#     score_function_name: "fragment_pairwise_gapless"
-#     score_kwargs:
-#       overwrite: true
-#       aligner_matrix_name: "EDSSMat50"
-#     lflank: 2
-#     rflank: 2
-#     level: "Vertebrata"
-#   fragpair_gapless_lf10_rf10_edssmat50:
-#     score_function_name: "fragment_pairwise_gapless"
-#     score_kwargs:
-#       overwrite: true
-#       aligner_matrix_name: "EDSSMat50"
-#     lflank: 10
-#     rflank: 10
-#     level: "Vertebrata"
-#   fragpair_gapless_lf0_rf0_edssmat50:
-#     score_function_name: "fragment_pairwise_gapless"
-#     score_kwargs:
-#       overwrite: true
-#       aligner_matrix_name: "EDSSMat50"
-#     lflank: 0
-#     rflank: 0
-#     level: "Vertebrata"
-new_embedding_score_methods:
-#   frag_pairwise_gapless_embedding_lf10_rf10:
-#     score_function_name: "frag_pairwise_gapless_embedding"
-#     score_kwargs:
-#       overwrite: true
-#     lflank: 10
-#     rflank: 10
-#     level: "Vertebrata"
-#   frag_pairwise_gapless_embedding_lf5_rf5:
-#     score_function_name: "frag_pairwise_gapless_embedding"
-#     score_kwargs:
-#       overwrite: true
-#     lflank: 5
-#     rflank: 5
-#     level: "Vertebrata"
-  frag_pairwise_gapless_embedding_lf0_rf0:
-    score_function_name: "frag_pairwise_gapless_embedding"
-    score_kwargs:
-      overwrite: true
+msa_score_methods:
+  aln_property_entropy:
+    function_name: "aln_property_entropy"
+    function_params:
+      gap_frac_cutoff: 0.2
+      overwrite: false
+
+pairk_aln_methods:
+  fragpair_gapless_lf5_rf5_grantham:
+    function_name: "fragment_pairwise_gapless"
+    function_params:
+      overwrite: false
+      matrix_name: "grantham_similarity"
+    lflank: 5
+    rflank: 5
+    level: "Vertebrata"
+
+pairk_embedding_aln_methods:
+  pairk_aln_embedding_lf0_rf0:
+    function_name: "pairk_aln_embedding"
+    function_params:
+      overwrite: false
     lflank: 0
     rflank: 0
     level: "Vertebrata"
@@ -95,16 +52,15 @@ esm_params:
   processes: 1
 multilevel_plot_params:
   score_key: null
-  score_type: "zscore"
+  score_type: "z_score"
 aln_slice_params:
   n_flanking_aas: 20
   # whole_idr: true
-pairwise_matrix_to_score_params:
-  matrix_to_score_function_name: "pairwise_matrix_to_kmer_scores"
+pairk_conservation_params:
+  kmer_conservation_function_name: "pairk_conservation"
   columnwise_score_function_name: "property_entropy"
-  reciprocal_best_match: false
-  similarity_threshold: 1.0
   bg_cutoff: 50
+
 table_annotation_params:
   score_key_for_table: null
   # motif_regex: "P.P.E"

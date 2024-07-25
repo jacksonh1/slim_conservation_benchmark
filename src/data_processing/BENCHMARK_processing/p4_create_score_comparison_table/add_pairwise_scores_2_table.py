@@ -12,30 +12,32 @@ import local_conservation_scores.tools.capra_singh_2007_scores as cs
 import local_seqtools.general_utils as tools
 import numpy as np
 import pandas as pd
-from local_conservation_scores import PairwiseMatrixKmerScoreMethods
+from local_conservation_scores import PairKmerAlnMethods
 from local_conservation_scores import ColumnwiseScoreMethods
-from local_conservation_scores import PairwiseMatrixMethods
 from attrs import asdict, define, field, validators
 from local_config import conservation_pipeline_parameters as conf
 import traceback
 from dataclasses import dataclass
 
 
-PAIRWISEMETHODS = PairwiseMatrixKmerScoreMethods()
+PAIRKMERALNFUNCS = PairKmerAlnMethods()
 COLSCOREMETHODS = ColumnwiseScoreMethods()
-PAIRWISEMATFUNCS = PairwiseMatrixMethods()
 
 
 # %%
 
 N_CORES = round(multiprocessing.cpu_count())
 
+
 @define
 class Params:
-    scoreconfig: conf.PairMatrixToScoreConf
+    scoreconfig: conf.PairKmerConservationConf
     score_key: str = "fragment_pairwise_gapless"
     level: str = "Vertebrata"
-    keys_for_table: list[str] = field(default=["score_function_name", "matrix_name", "lflank", "rflank"])
+    keys_for_table: list[str] = field(
+        default=["function_name", "matrix_name", "lflank", "rflank"]
+    )
+
 
 @define
 class PairwiseScoreResults:
@@ -52,19 +54,21 @@ def lvlo_2_pairwise_scores(
     lvlo: group_tools.ConserLevel,
     score_key: str,
     # mat2score_func: str = "matrix_json_2_pairwise_scores",
-    scoreconfig: conf.PairMatrixToScoreConf,
+    scoreconfig: conf.PairKmerConservationConf,
 ):
-    mat_function = PAIRWISEMETHODS.__getitem__(scoreconfig.matrix_to_score_function_name)
-    col_function = COLSCOREMETHODS.__getitem__(scoreconfig.columnwise_score_function_name)
-    
+    mat_function = PAIRKMERALNFUNCS.__getitem__(
+        scoreconfig.kmer_conservation_function_name
+    )
+    col_function = COLSCOREMETHODS.__getitem__(
+        scoreconfig.columnwise_score_function_name
+    )
+
     pairdict = lvlo.conservation_scores[score_key]
     flanked_hit_scores = mat_function(
-        pairdict["matrix_file"],
+        pairdict["file"],
         pairdict["flanked_hit_start_position_in_idr"],
         columnwise_score_func=col_function,
-        reciprocal_best_match=scoreconfig.reciprocal_best_match,
         bg_cutoff=scoreconfig.bg_cutoff,
-        similarity_threshold=scoreconfig.similarity_threshold,
         bg_kmer_cutoff=scoreconfig.bg_kmer_cutoff,
     )
     hit_slice = slice(
@@ -86,20 +90,20 @@ def lvlo_2_pairwise_scores(
 def process_row(row, params: Params):
     json_file = row["json_file"]
     og = group_tools.ConserGene(json_file)
-    row['score_key'] = params.score_key
+    row["score_key"] = params.score_key
     if hasattr(og, "critical_error"):
         row["errors"] = f"critical_error: {og.critical_error}"
         return row
     og.load_levels()
     if og.level_objects is None:
-        row['errors'] = f"level {params.level} not in og.level_objects"
+        row["errors"] = f"level {params.level} not in og.level_objects"
         return row
     if params.level not in og.level_objects:
-        row['errors'] = f"level {params.level} not in og.level_objects"
+        row["errors"] = f"level {params.level} not in og.level_objects"
         return row
     lvlo = og.level_objects[params.level]
     if params.score_key not in lvlo.conservation_scores:
-        row['errors'] = f"score_key {params.score_key} not in lvlo.conservation_scores"
+        row["errors"] = f"score_key {params.score_key} not in lvlo.conservation_scores"
         return row
     score_dict = copy.deepcopy(lvlo.conservation_scores[f"{params.score_key}"])
     row["k"] = len(score_dict["flanked_hit"])
@@ -107,10 +111,10 @@ def process_row(row, params: Params):
         if isinstance(score_dict[k], dict):
             for j in score_dict[k]:
                 if j in params.keys_for_table:
-                    row[f'{j}'] = score_dict[k][j]
+                    row[f"{j}"] = score_dict[k][j]
             continue
         if k in params.keys_for_table:
-            row[f'{k}'] = score_dict[k]
+            row[f"{k}"] = score_dict[k]
     try:
         scores = lvlo_2_pairwise_scores(
             lvlo=lvlo,
@@ -128,7 +132,7 @@ def process_row(row, params: Params):
     row["n_bg_scores"] = len(scores.background_scores)
     row["bg_STD"] = np.std(scores.background_scores)
     row["bg_mean"] = np.mean(scores.background_scores)
-    for k,v in asdict(params.scoreconfig).items():
+    for k, v in asdict(params.scoreconfig).items():
         row[k] = v
     return row
 
@@ -143,7 +147,7 @@ def process_chunk(chunk, params: Params):
 
 def add_pairwise_scores_2_df(
     df: pd.DataFrame,
-    scoreconfig: conf.PairMatrixToScoreConf,
+    scoreconfig: conf.PairKmerConservationConf,
     score_key: str,
     level: str,
     n_cores: int = N_CORES,
@@ -164,5 +168,3 @@ def add_pairwise_scores_2_df(
         )
     df_result = pd.concat(processed_chunks)
     return df_result
-
-

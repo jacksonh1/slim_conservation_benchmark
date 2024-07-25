@@ -71,17 +71,18 @@ def remove_failed_jsons(json_files):
     return passing_jsons
 
 
-
 def main(config_file):
     config = load_config(config_file)
-    config.pairwise_matrix_to_score_params.matrix_to_score_function_name = "pairwise_matrix_to_kmer_scores_rbm_penalty"
+    config.pairk_conservation_params.kmer_conservation_function_name = (
+        "pairwise_matrix_to_kmer_scores_rbm_penalty"
+    )
     for scoremethod in config.score_methods:
         s5c_add_hit_scores.compute_hit_conservation_scores(
-            json_file='../../../../benchmark/benchmark_v2/test/output/12-9606_0_000b76/12-9606_0_000b76.json',
+            json_file="../../../../benchmark/benchmark_v2/test/output/12-9606_0_000b76/12-9606_0_000b76.json",
             scoremethod=scoremethod,
-            params=config.pairwise_matrix_to_score_params,
+            params=config.pairk_conservation_params,
         )
+
 
 if __name__ == "__main__":
     main(CONFIG_FILE)
-

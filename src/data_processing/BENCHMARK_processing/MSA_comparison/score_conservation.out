@@ -1,0 +1,9 @@
+new_index is False, and a reindexed table file does not exist: ../../../../benchmark/benchmark_v4/MSA_comparison/conservation_analysis/benchmark_table_MSA_comparison_original_reindexed.csv, so the input table file should already have a reference_index column.
+using the input table
+calculating alignment scores
+calculating pairwise matrices
+calculating kmer scores from pairwise matrices
+calculating annotations
+adding annotations to table
+done
+total time elapsed: 6.634043828646342 minutes (398.0426297187805 seconds)

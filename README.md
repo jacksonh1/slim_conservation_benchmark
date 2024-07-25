@@ -20,7 +20,8 @@ I cannot release iupred here because it is not open source (however it is free f
 They are as follows:
 
 ### slim_conservation_orthogroup_generation
-This environment was used to generate the orthogroups. The code and instructions are available here: [slim_conservation_orthogroup_generation](https://github.com/jacksonh1/orthogroup_generation). The full OrthoDB (v11) data files were used.
+This environment was used to generate the orthogroups. The code and instructions are available here: [slim_conservation_orthogroup_generation](https://github.com/jacksonh1/orthogroup_generation). 
+- The full OrthoDB (v11) data files were used to get the sequences in the benchmark.
 
 
 ### slim_conservation_scoring
@@ -30,6 +31,15 @@ This environment was used to score the conservation using the generated orthogro
 For the kibby conservation scores, an environment created from the [kibby](https://github.com/esbgkannan/kibby) repo was used and the `conservation_from_fasta.py` script was executed to get conservation scores.
 <br>
 See the included links for more about how the tools work
+
+<!-- ### reproducing the benchmark
+To reproduce the benchmark, you will need to set up the environments described above. To make this as reproducible as possible, I've included copies of the `slim_conservation` source code in this repo (in the [tools](./tools) directory) so that the exact version of the code used in the benchmark is available. The `kibby` code is not included here, but you can find it at the link above.
+To create the exact environments used:
+- `git clone http....`
+- `cd [benchmark repo]/tools/slim_conservation_orthogroup_generation`
+- follow the instructions in [./tools/slim_conservation_orthogroup_generation/README.md](./tools/slim_conservation_orthogroup_generation/README.md) to set up the environment and install the src code in that environment
+- `cd [benchmark repo]/tools/slim_conservation_scoring`
+- follow the instructions in [./tools/slim_conservation_scoring/README.md](./tools/slim_conservation_scoring/README.md) to set up the environment and install the src code in that environment -->
 
 
 ## data processing

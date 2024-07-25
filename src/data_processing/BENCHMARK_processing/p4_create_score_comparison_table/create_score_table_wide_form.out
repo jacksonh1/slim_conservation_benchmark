@@ -1,0 +1,116 @@
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+PairKmerConservationConf(kmer_conservation_function_name='pairk_conservation', columnwise_score_function_name='shannon_entropy', bg_cutoff=50, bg_kmer_cutoff=10)
+PairKmerConservationConf(kmer_conservation_function_name='pairk_conservation', columnwise_score_function_name='property_entropy', bg_cutoff=50, bg_kmer_cutoff=10)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/pairk_repo/pairk/backend/conservation/kmer_conservation.py:50: RuntimeWarning: invalid value encountered in divide
+  z_score_arr = (score_arr - bg_mean) / bg_std
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/pairk_repo/pairk/backend/conservation/kmer_conservation.py:50: RuntimeWarning: invalid value encountered in divide
+  z_score_arr = (score_arr - bg_mean) / bg_std
+/home/jch/pairk_repo/pairk/backend/conservation/kmer_conservation.py:50: RuntimeWarning: invalid value encountered in divide
+  z_score_arr = (score_arr - bg_mean) / bg_std
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/pairk_repo/pairk/backend/conservation/kmer_conservation.py:50: RuntimeWarning: invalid value encountered in divide
+  z_score_arr = (score_arr - bg_mean) / bg_std
+/home/jch/pairk_repo/pairk/backend/conservation/kmer_conservation.py:50: RuntimeWarning: invalid value encountered in divide
+  z_score_arr = (score_arr - bg_mean) / bg_std
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/pairk_repo/pairk/backend/conservation/kmer_conservation.py:50: RuntimeWarning: invalid value encountered in divide
+  z_score_arr = (score_arr - bg_mean) / bg_std
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/pairk_repo/pairk/backend/conservation/kmer_conservation.py:50: RuntimeWarning: invalid value encountered in divide
+  z_score_arr = (score_arr - bg_mean) / bg_std
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/pairk_repo/pairk/backend/conservation/kmer_conservation.py:50: RuntimeWarning: invalid value encountered in divide
+  z_score_arr = (score_arr - bg_mean) / bg_std
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/pairk_repo/pairk/backend/conservation/kmer_conservation.py:50: RuntimeWarning: invalid value encountered in divide
+  z_score_arr = (score_arr - bg_mean) / bg_std
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/pairk_repo/pairk/backend/conservation/kmer_conservation.py:50: RuntimeWarning: invalid value encountered in divide
+  z_score_arr = (score_arr - bg_mean) / bg_std
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/pairk_repo/pairk/backend/conservation/kmer_conservation.py:50: RuntimeWarning: invalid value encountered in divide
+  z_score_arr = (score_arr - bg_mean) / bg_std
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/pairk_repo/pairk/backend/conservation/kmer_conservation.py:50: RuntimeWarning: invalid value encountered in divide
+  z_score_arr = (score_arr - bg_mean) / bg_std
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/pairk_repo/pairk/backend/conservation/kmer_conservation.py:50: RuntimeWarning: invalid value encountered in divide
+  z_score_arr = (score_arr - bg_mean) / bg_std
+/home/jch/pairk_repo/pairk/backend/conservation/kmer_conservation.py:50: RuntimeWarning: invalid value encountered in divide
+  z_score_arr = (score_arr - bg_mean) / bg_std
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/pairk_repo/pairk/backend/conservation/kmer_conservation.py:50: RuntimeWarning: invalid value encountered in divide
+  z_score_arr = (score_arr - bg_mean) / bg_std
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
+/home/jch/mambaforge/envs/slim_conservation/lib/python3.12/site-packages/numpy/core/fromnumeric.py:59: FutureWarning: 'DataFrame.swapaxes' is deprecated and will be removed in a future version. Please use 'DataFrame.transpose' instead.
+  return bound(*args, **kwds)
