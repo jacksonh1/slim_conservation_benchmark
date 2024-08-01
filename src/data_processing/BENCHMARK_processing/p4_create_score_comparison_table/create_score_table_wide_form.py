@@ -2,23 +2,13 @@
 from pathlib import Path
 from local_config import conservation_pipeline_parameters as conf
 
-# from local_conservation_scores import PairwiseMatrixKmerScoreMethods
-from local_conservation_scores import ConservationScoreMethods, PairKmerAlnMethods
-
-# from local_conservation_scores import ColumnwiseScoreMethods
 import pandas as pd
-from add_aln_scores_2_table import add_aln_scores_2_df
+from add_msa_scores_2_table import (
+    add_aln_scores_2_df,
+)
 
-# from add_pairwise_embedding_scores_2_table import add_pairwise_embedding_scores_2_df
 from add_pairwise_scores_2_table import add_pairwise_scores_2_df
 import yaml
-
-# %%
-
-# PAIRWISEMETHODS = PairwiseMatrixKmerScoreMethods()
-# COLSCOREMETHODS = ColumnwiseScoreMethods()
-PAIRKMERALNFUNCS = PairKmerAlnMethods()
-ALNSCORES = ConservationScoreMethods()
 
 
 def load_config(config_file: str) -> conf.PipelineParameters:
@@ -38,16 +28,9 @@ config = load_config("../p3_run_conservation_pipeline/params.yaml")
 score_index = 0
 
 
-aln_score_methods = []
-pairwise_score_methods = []
-for scoremethod in config.score_methods:
-    if hasattr(ALNSCORES, scoremethod.function_name):
-        aln_score_methods.append(scoremethod)
-    elif hasattr(PAIRKMERALNFUNCS, scoremethod.function_name):
-        pairwise_score_methods.append(scoremethod)
-emb_pairwise_score_methods = [
-    scoremethod for scoremethod in config.embedding_score_methods
-]
+aln_score_methods = config.msa_score_methods
+pairk_aln_methods = config.pairk_aln_methods
+pairk_emb_aln_methods = config.pairk_embedding_aln_methods
 
 
 # %%
@@ -80,7 +63,7 @@ for level in levels:
             if scoremethod.level != level:
                 continue
         output_file = output_folder / f"{score_index}.csv"
-        df_temp = add_aln_scores_2_df(df, scoremethod.score_key, level, n_cores=50)
+        df_temp = add_aln_scores_2_df(df, scoremethod.score_key, level, n_cores=60)
         df_temp.to_csv(output_file, index=False)
         score_key_df.loc[score_index, "score_index"] = score_index
         score_key_df.loc[score_index, "aln_type"] = "MSA - MAFFT"
@@ -112,10 +95,10 @@ kmerscoreobj = config.pairk_conservation_params
 # variables to modify
 # columnwise_score_function_name
 columnwise_score_function_name = ["shannon_entropy", "property_entropy"]
-mat_2_score_configs = []
+pairk_conservation_configs = []
 for c in columnwise_score_function_name:
-    mat_2_score_configs.append(
-        conf.PairKmerConservationConf(
+    pairk_conservation_configs.append(
+        conf.PairKmerConservationParams(
             kmer_conservation_function_name=config.pairk_conservation_params.kmer_conservation_function_name,
             columnwise_score_function_name=c,
             bg_cutoff=config.pairk_conservation_params.bg_cutoff,
@@ -124,18 +107,18 @@ for c in columnwise_score_function_name:
     )
 
 
-for i in mat_2_score_configs:
+for i in pairk_conservation_configs:
     print(i)
 # %%
 for level in levels:
-    for mat_2_score_config in mat_2_score_configs:
-        for scoremethod in pairwise_score_methods:
+    for pairk_conservation_config in pairk_conservation_configs:
+        for scoremethod in pairk_aln_methods:
             if scoremethod.level is not None:
                 if scoremethod.level != level:
                     continue
             output_file = output_folder / f"{score_index}.csv"
             df_temp = add_pairwise_scores_2_df(
-                df, mat_2_score_config, scoremethod.score_key, level, n_cores=50
+                df, pairk_conservation_config, scoremethod.score_key, level, n_cores=60
             )
             df_temp.to_csv(output_file, index=False)
             score_key_df.loc[score_index, "table_file"] = str(output_file.resolve())
@@ -146,7 +129,7 @@ for level in levels:
             score_key_df.loc[score_index, "lflank"] = scoremethod.lflank
             score_key_df.loc[score_index, "rflank"] = scoremethod.rflank
             score_key_df.loc[score_index, "columnwise_score_function_name"] = (
-                mat_2_score_config.columnwise_score_function_name
+                pairk_conservation_config.columnwise_score_function_name
             )
             score_index += 1
 
@@ -157,10 +140,10 @@ for level in levels:
 # %%
 columnwise_score_function_name = ["shannon_entropy", "property_entropy"]
 # columnwise_score_function_name = ["shannon_entropy"]
-mat_2_score_configs = []
+pairk_conservation_configs = []
 for c in columnwise_score_function_name:
-    mat_2_score_configs.append(
-        conf.PairKmerConservationConf(
+    pairk_conservation_configs.append(
+        conf.PairKmerConservationParams(
             kmer_conservation_function_name=config.pairk_conservation_params.kmer_conservation_function_name,
             columnwise_score_function_name=c,
             bg_cutoff=config.pairk_conservation_params.bg_cutoff,
@@ -170,14 +153,14 @@ for c in columnwise_score_function_name:
 # levels = ["Tetrapoda", "Vertebrata", "Metazoa", "Eukaryota"]
 levels = ["Tetrapoda", "Vertebrata", "Metazoa"]
 for level in levels:
-    for mat_2_score_config in mat_2_score_configs:
-        for scoremethod in emb_pairwise_score_methods:
+    for pairk_conservation_config in pairk_conservation_configs:
+        for scoremethod in pairk_emb_aln_methods:
             if scoremethod.level is not None:
                 if scoremethod.level != level:
                     continue
             output_file = output_folder / f"{score_index}.csv"
             df_temp = add_pairwise_scores_2_df(
-                df, mat_2_score_config, scoremethod.score_key, level, n_cores=50
+                df, pairk_conservation_config, scoremethod.score_key, level, n_cores=60
             )
             df_temp.to_csv(output_file, index=False)
             score_key_df.loc[score_index, "table_file"] = str(output_file.resolve())
@@ -188,7 +171,7 @@ for level in levels:
             score_key_df.loc[score_index, "lflank"] = scoremethod.lflank
             score_key_df.loc[score_index, "rflank"] = scoremethod.rflank
             score_key_df.loc[score_index, "columnwise_score_function_name"] = (
-                mat_2_score_config.columnwise_score_function_name
+                pairk_conservation_config.columnwise_score_function_name
             )
             score_index += 1
 

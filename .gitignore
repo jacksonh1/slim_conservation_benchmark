@@ -1,6 +1,7 @@
 *.fasta
 *.json
 TODO.md
+environment/
 
 figures/figure1/example_alignments/RIAM/
 figures/figure1/example_alignments/LPP/
@@ -12,7 +13,6 @@ figures/figure1/example_alignments/ena_motif_alignments/
 .stfolder/
 !*/
 *.tar.gz
-make_odb_example_dataset/
 # data/
 development/
 *.code-workspace

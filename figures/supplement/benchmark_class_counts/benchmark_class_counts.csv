@@ -1,9 +1,9 @@
 ELM_motif_class,False,True,regex,mask_array
-DOC_WW_Pin1_4,242,42,...([ST])P.,[0 0 0 1 1 0]
-Ena/VASP ([FL]PPPP),241,34,[FL]PPPP,[1 1 0 1 1]
-LIG_14-3-3_CanoR_1,246,41,"R[^DE]{0,2}[^DEPG]([ST])(([FWYLMV].)|([^PRIKGN]P)|([^PRIKGN].{2,4}[VILMFWYP]))",No mask
-LIG_AP2alpha_2,241,49,DP[FW],[1 1 1]
+DOC_WW_Pin1_4,227,42,...([ST])P.,[0 0 0 1 1 0]
+Ena/VASP ([FL]PPPP),249,34,[FL]PPPP,[1 1 0 1 1]
+LIG_14-3-3_CanoR_1,255,41,"R[^DE]{0,2}[^DEPG]([ST])(([FWYLMV].)|([^PRIKGN]P)|([^PRIKGN].{2,4}[VILMFWYP]))",No mask
+LIG_AP2alpha_2,249,49,DP[FW],[1 1 1]
 LIG_EH_1,269,49,.NPF.,[0 1 1 1 0]
-LIG_SH2_GRB2like,210,18,(Y)([EDST]|[MLIVAFYHQW])N.,[1 1 1 0]
-LIG_SH3_CIN85_PxpxPR_1,212,28,P.[AP].PR,[1 0 1 0 1 1]
-TRAF6,199,7,...P.E..[FYWDE],[0 0 0 1 0 1 0 0 1]
+LIG_SH2_GRB2like,271,18,(Y)([EDST]|[MLIVAFYHQW])N.,[1 1 1 0]
+LIG_SH3_CIN85_PxpxPR_1,252,28,P.[AP].PR,[1 0 1 0 1 1]
+TRAF6,221,7,...P.E..[FYWDE],[0 0 0 1 0 1 0 0 1]

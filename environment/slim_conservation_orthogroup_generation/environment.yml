@@ -1,0 +1,21 @@
+name: slim_conservation_orthogroup_generation
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python>=3.10
+  - pip
+  - pandas
+  - numpy
+  - jupyter
+  - biopython
+  - cd-hit
+  - ca-certificates
+  - certifi
+  - openssl
+  - mafft
+  - python-dotenv
+  - pyprojroot
+  - tabulate
+  - pip:
+    - alfpy

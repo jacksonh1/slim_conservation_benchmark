@@ -1,0 +1,46 @@
+score_index,aln_type,level,score_key,table_file,lflank,rflank,columnwise_score_function_name,num_passing
+0.0,MSA - MAFFT,Tetrapoda,aln_property_entropy,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/0.csv,MSA,MSA,property_entropy,2490
+1.0,MSA - MAFFT,Tetrapoda,aln_shannon_entropy,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/1.csv,MSA,MSA,shannon_entropy,2490
+2.0,MSA - MAFFT,Vertebrata,aln_property_entropy,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/2.csv,MSA,MSA,property_entropy,2644
+3.0,MSA - MAFFT,Vertebrata,aln_shannon_entropy,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/3.csv,MSA,MSA,shannon_entropy,2644
+4.0,MSA - MAFFT,Metazoa,aln_property_entropy,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/4.csv,MSA,MSA,property_entropy,2474
+5.0,MSA - MAFFT,Metazoa,aln_shannon_entropy,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/5.csv,MSA,MSA,shannon_entropy,2474
+6.0,Pairwise,Tetrapoda,pairk_aln_lf5_rf5_edssmat50,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/6.csv,5.0,5.0,shannon_entropy,2551
+7.0,Pairwise,Tetrapoda,pairk_aln_lf0_rf0_edssmat50,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/7.csv,0.0,0.0,shannon_entropy,2652
+8.0,Pairwise,Tetrapoda,pairk_aln_lf5_rf5_edssmat50,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/8.csv,5.0,5.0,property_entropy,2551
+9.0,Pairwise,Tetrapoda,pairk_aln_lf0_rf0_edssmat50,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/9.csv,0.0,0.0,property_entropy,2652
+10.0,Pairwise,Vertebrata,pairk_aln_lf5_rf5_edssmat50,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/10.csv,5.0,5.0,shannon_entropy,2713
+11.0,Pairwise,Vertebrata,pairk_aln_lf5_rf5_blosum62,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/11.csv,5.0,5.0,shannon_entropy,2713
+12.0,Pairwise,Vertebrata,pairk_aln_lf0_rf0_blosum62,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/12.csv,0.0,0.0,shannon_entropy,2822
+13.0,Pairwise,Vertebrata,pairk_aln_lf0_rf0_grantham,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/13.csv,0.0,0.0,shannon_entropy,2822
+14.0,Pairwise,Vertebrata,pairk_aln_lf2_rf2_edssmat50,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/14.csv,2.0,2.0,shannon_entropy,2797
+15.0,Pairwise,Vertebrata,pairk_aln_lf10_rf10_edssmat50,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/15.csv,10.0,10.0,shannon_entropy,2614
+16.0,Pairwise,Vertebrata,pairk_aln_lf0_rf0_edssmat50,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/16.csv,0.0,0.0,shannon_entropy,2822
+17.0,Pairwise,Vertebrata,pairk_aln_needleman_lf0_rf0_edssmat50,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/17.csv,0.0,0.0,shannon_entropy,2822
+18.0,Pairwise,Vertebrata,pairk_aln_lf5_rf5_edssmat50,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/18.csv,5.0,5.0,property_entropy,2713
+19.0,Pairwise,Vertebrata,pairk_aln_lf5_rf5_blosum62,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/19.csv,5.0,5.0,property_entropy,2713
+20.0,Pairwise,Vertebrata,pairk_aln_lf0_rf0_blosum62,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/20.csv,0.0,0.0,property_entropy,2822
+21.0,Pairwise,Vertebrata,pairk_aln_lf0_rf0_grantham,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/21.csv,0.0,0.0,property_entropy,2822
+22.0,Pairwise,Vertebrata,pairk_aln_lf2_rf2_edssmat50,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/22.csv,2.0,2.0,property_entropy,2797
+23.0,Pairwise,Vertebrata,pairk_aln_lf10_rf10_edssmat50,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/23.csv,10.0,10.0,property_entropy,2614
+24.0,Pairwise,Vertebrata,pairk_aln_lf0_rf0_edssmat50,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/24.csv,0.0,0.0,property_entropy,2822
+25.0,Pairwise,Vertebrata,pairk_aln_needleman_lf0_rf0_edssmat50,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/25.csv,0.0,0.0,property_entropy,2822
+26.0,Pairwise,Metazoa,pairk_aln_lf5_rf5_edssmat50,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/26.csv,5.0,5.0,shannon_entropy,2732
+27.0,Pairwise,Metazoa,pairk_aln_lf0_rf0_edssmat50,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/27.csv,0.0,0.0,shannon_entropy,2844
+28.0,Pairwise,Metazoa,pairk_aln_lf5_rf5_edssmat50,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/28.csv,5.0,5.0,property_entropy,2732
+29.0,Pairwise,Metazoa,pairk_aln_lf0_rf0_edssmat50,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/29.csv,0.0,0.0,property_entropy,2844
+30.0,Pairwise embedding,Tetrapoda,pairk_aln_embedding_lf5_rf5,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/30.csv,5.0,5.0,shannon_entropy,2551
+31.0,Pairwise embedding,Tetrapoda,pairk_aln_embedding_lf0_rf0,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/31.csv,0.0,0.0,shannon_entropy,2652
+32.0,Pairwise embedding,Tetrapoda,pairk_aln_embedding_lf5_rf5,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/32.csv,5.0,5.0,property_entropy,2551
+33.0,Pairwise embedding,Tetrapoda,pairk_aln_embedding_lf0_rf0,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/33.csv,0.0,0.0,property_entropy,2652
+34.0,Pairwise embedding,Vertebrata,pairk_aln_embedding_lf5_rf5,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/34.csv,5.0,5.0,shannon_entropy,2713
+35.0,Pairwise embedding,Vertebrata,pairk_aln_embedding_lf0_rf0,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/35.csv,0.0,0.0,shannon_entropy,2822
+36.0,Pairwise embedding,Vertebrata,pairk_aln_embedding_lf5_rf5,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/36.csv,5.0,5.0,property_entropy,2713
+37.0,Pairwise embedding,Vertebrata,pairk_aln_embedding_lf0_rf0,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/37.csv,0.0,0.0,property_entropy,2822
+38.0,Pairwise embedding,Metazoa,pairk_aln_embedding_lf5_rf5,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/38.csv,5.0,5.0,shannon_entropy,2732
+39.0,Pairwise embedding,Metazoa,pairk_aln_embedding_lf0_rf0,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/39.csv,0.0,0.0,shannon_entropy,2844
+40.0,Pairwise embedding,Metazoa,pairk_aln_embedding_lf5_rf5,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/40.csv,5.0,5.0,property_entropy,2732
+41.0,Pairwise embedding,Metazoa,pairk_aln_embedding_lf0_rf0,/home/jch/Documents/08-benchmark/benchmark/benchmark_v4/p3_conservation/wide_form_tables_with_scores/41.csv,0.0,0.0,property_entropy,2844
+kibby_hit_zscores,kibby,Metazoa,kibby,kibby,kibby,kibby,kibby,kibby
+kibby_hit_zscores,kibby,Tetrapoda,kibby,kibby,kibby,kibby,kibby,kibby
+kibby_hit_zscores,kibby,Vertebrata,kibby,kibby,kibby,kibby,kibby,kibby

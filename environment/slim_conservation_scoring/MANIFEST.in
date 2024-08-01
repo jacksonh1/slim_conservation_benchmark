@@ -1,0 +1,2 @@
+recursive-include slim_conservation_scoring/local_data *
+recursive-include slim_conservation_scoring/env_variables *

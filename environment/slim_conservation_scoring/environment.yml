@@ -1,0 +1,35 @@
+name: slim_conservation_scoring
+channels:
+  - pytorch
+  - bioconda
+  - conda-forge
+dependencies:
+  - python>=3.10
+  - python-dotenv
+  - openpyxl
+  - attrs
+  - babel
+  - beautifulsoup4
+  - biopython
+  - importlib_resources
+  - ipykernel
+  - ipython
+  - jupyter
+  - matplotlib
+  - pandas
+  - pip
+  - python
+  - pytorch
+  - scikit-learn
+  - scipy
+  - seaborn
+  - tabulate
+  - torchvision
+  - tornado
+  - yaml
+  - pip:
+      - alfpy
+      - fair-esm
+      - logomaker
+      - tqdm
+      - transformers

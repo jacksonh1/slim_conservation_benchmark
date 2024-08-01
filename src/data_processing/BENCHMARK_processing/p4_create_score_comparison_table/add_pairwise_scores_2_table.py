@@ -12,7 +12,7 @@ import local_conservation_scores.tools.capra_singh_2007_scores as cs
 import local_seqtools.general_utils as tools
 import numpy as np
 import pandas as pd
-from local_conservation_scores import PairKmerAlnMethods
+from local_conservation_scores import PairKmerConservationMethods
 from local_conservation_scores import ColumnwiseScoreMethods
 from attrs import asdict, define, field, validators
 from local_config import conservation_pipeline_parameters as conf
@@ -20,7 +20,7 @@ import traceback
 from dataclasses import dataclass
 
 
-PAIRKMERALNFUNCS = PairKmerAlnMethods()
+PAIRKCONSMETHODS = PairKmerConservationMethods()
 COLSCOREMETHODS = ColumnwiseScoreMethods()
 
 
@@ -31,8 +31,8 @@ N_CORES = round(multiprocessing.cpu_count())
 
 @define
 class Params:
-    scoreconfig: conf.PairKmerConservationConf
-    score_key: str = "fragment_pairwise_gapless"
+    scoreconfig: conf.PairKmerConservationParams
+    score_key: str = "pairk_aln"
     level: str = "Vertebrata"
     keys_for_table: list[str] = field(
         default=["function_name", "matrix_name", "lflank", "rflank"]
@@ -44,19 +44,19 @@ class PairwiseScoreResults:
     hit_sequence: str
     hit_scores: list[float]
     hit_z_scores: list[float]
-    flank_hit_sequence: str | None = None
-    flank_hit_scores: list[float] | None = None
-    flank_hit_z_scores: list[float] | None = None
-    background_scores: list[float] | None = None
+    flank_hit_sequence: str
+    flank_hit_scores: list[float]
+    flank_hit_z_scores: list[float]
+    background_scores: list[float]
 
 
 def lvlo_2_pairwise_scores(
     lvlo: group_tools.ConserLevel,
     score_key: str,
     # mat2score_func: str = "matrix_json_2_pairwise_scores",
-    scoreconfig: conf.PairKmerConservationConf,
+    scoreconfig: conf.PairKmerConservationParams,
 ):
-    mat_function = PAIRKMERALNFUNCS.__getitem__(
+    pairk_cons_function = PAIRKCONSMETHODS.__getitem__(
         scoreconfig.kmer_conservation_function_name
     )
     col_function = COLSCOREMETHODS.__getitem__(
@@ -64,8 +64,8 @@ def lvlo_2_pairwise_scores(
     )
 
     pairdict = lvlo.conservation_scores[score_key]
-    flanked_hit_scores = mat_function(
-        pairdict["file"],
+    flanked_hit_scores = pairk_cons_function(
+        pairdict["kmer_aln_file"],
         pairdict["flanked_hit_start_position_in_idr"],
         columnwise_score_func=col_function,
         bg_cutoff=scoreconfig.bg_cutoff,
@@ -147,7 +147,7 @@ def process_chunk(chunk, params: Params):
 
 def add_pairwise_scores_2_df(
     df: pd.DataFrame,
-    scoreconfig: conf.PairKmerConservationConf,
+    scoreconfig: conf.PairKmerConservationParams,
     score_key: str,
     level: str,
     n_cores: int = N_CORES,
