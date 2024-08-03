@@ -59,6 +59,7 @@ pairk_embedding_aln_methods:
     function_name: "pairk_aln_embedding"
     function_params:
       overwrite: false
+      # embedding_file_path: "/mnt/shared/jch/embeddings_tmp/"
     lflank: 5
     rflank: 5
     level: "Vertebrata"

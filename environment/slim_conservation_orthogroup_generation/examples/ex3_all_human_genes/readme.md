@@ -44,7 +44,7 @@ You can find the species code for any organism in orthoDB in the `odb11v0_specie
 Or you could do something like this:
 ```python
 import orthodb_tools.env_variables.env_variables as env
-ODB_DATABASE = env.orthoDB_database()
+ODB_DATABASE = env.orthoDBDatabase()
 
 for k,v in ODB_DATABASE.data_species_dict.items():
     if 'sapiens' in v:

@@ -4,10 +4,11 @@ import shutil
 import traceback
 from pathlib import Path
 
-import local_config.orthodb_pipeline_parameters as conf
-import local_orthoDB_group_pipeline.sql_queries as sql_queries
-# import local_scripts.create_filemap as create_filemap
-import local_scripts.odb_group_pipeline as pipeline
+import orthodb_tools.config.orthodb_pipeline_parameters as conf
+import orthodb_tools.sql_queries as sql_queries
+
+# import orthodb_tools.scripts.create_filemap as create_filemap
+import orthodb_tools.orthogroup_processing.pipeline as pipeline
 
 SPECIES_ID = "9606_0"
 N_CORES = multiprocessing.cpu_count() - 2
@@ -22,7 +23,7 @@ def multiple_levels(
     for og_level in og_levels:
         config.og_select_params.OG_level_name = og_level
         try:
-            pipeline.main_pipeline(config, odb_gene_id=query_odb_gene_id)
+            pipeline.orthogroup_pipeline(config, odb_gene_id=query_odb_gene_id)
         except ValueError as err:
             traceback.print_exc()
             # logger.error(f"{query_geneid} - {og_level} - {err}")
@@ -57,7 +58,7 @@ def main(
 
 
 if __name__ == "__main__":
-    og_levels = ["Eukaryota", "Mammalia", "Metazoa", "Tetrapoda", "Vertebrata"]
+    OG_LEVELS = ["Eukaryota", "Mammalia", "Metazoa", "Tetrapoda", "Vertebrata"]
     parser = argparse.ArgumentParser(
         description="run the pipeline for all genes in an organism",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
@@ -87,6 +88,14 @@ if __name__ == "__main__":
         help=f"""species id to use""",
     )
     parser.add_argument(
+        "-l",
+        "--og_levels",
+        nargs="*",
+        metavar="<list>",
+        default=OG_LEVELS,
+        help=f"""list of phylogenetic levels at which to construct ortholog groups""",
+    )
+    parser.add_argument(
         "-o",
         "--overwrite",
         action="store_true",
@@ -96,7 +105,7 @@ if __name__ == "__main__":
     config = pipeline.load_config(args.config)
     main(
         config,
-        og_levels,
+        og_levels=args.og_levels,
         multiprocess=True,
         species_id=args.species_id,
         n_cores=args.n_cores,

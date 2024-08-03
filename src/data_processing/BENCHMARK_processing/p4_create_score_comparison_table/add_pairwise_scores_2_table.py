@@ -7,15 +7,15 @@ import time
 from pathlib import Path
 from typing import Callable
 
-import local_conservation_analysis_pipeline.group_conservation_objects as group_tools
-import local_conservation_scores.tools.capra_singh_2007_scores as cs
-import local_seqtools.general_utils as tools
+import slim_conservation_scoring.pipeline.group_conservation_objects as group_tools
+import slim_conservation_scoring.conservation_scores.tools.capra_singh_2007_scores as cs
+import slim_conservation_scoring.seqtools.general_utils as tools
 import numpy as np
 import pandas as pd
-from local_conservation_scores import PairKmerConservationMethods
-from local_conservation_scores import ColumnwiseScoreMethods
+from slim_conservation_scoring.conservation_scores import PairKmerConservationMethods
+from slim_conservation_scoring.conservation_scores import ColumnwiseScoreMethods
 from attrs import asdict, define, field, validators
-from local_config import conservation_pipeline_parameters as conf
+from slim_conservation_scoring.config import conservation_pipeline_parameters as conf
 import traceback
 from dataclasses import dataclass
 

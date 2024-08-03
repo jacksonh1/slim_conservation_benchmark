@@ -7,10 +7,11 @@ from typing import Literal
 
 import pandas as pd
 
-import local_config.orthodb_pipeline_parameters as conf
-import local_orthoDB_group_pipeline.sql_queries as sql_queries
+import orthodb_tools.config.orthodb_pipeline_parameters as conf
+import orthodb_tools.sql_queries as sql_queries
+
 # import local_scripts.create_filemap as create_filemap
-import local_scripts.odb_group_pipeline as pipeline
+import orthodb_tools.orthogroup_processing.pipeline as pipeline
 
 N_CORES = multiprocessing.cpu_count() - 2
 OG_LEVELS = ["Eukaryota", "Mammalia", "Metazoa", "Tetrapoda", "Vertebrata"]
@@ -25,12 +26,15 @@ def multiple_levels(
     """
     run the pipeline for a single odb_gene_id for multiple og_levels
     """
-    assert id_type in ["odb_gene_id", "uniprot_id"], f"id_type must be 'odb_gene_id' or 'uniprot_id', not {id_type}"
+    assert id_type in [
+        "odb_gene_id",
+        "uniprot_id",
+    ], f"id_type must be 'odb_gene_id' or 'uniprot_id', not {id_type}"
     for og_level in og_levels:
         config.og_select_params.OG_level_name = og_level
         if id_type == "odb_gene_id":
             try:
-                pipeline.main_pipeline(config, odb_gene_id=gene_id)
+                pipeline.orthogroup_pipeline(config, odb_gene_id=gene_id)
             except ValueError as err:
                 traceback.print_exc()
                 # logger.error(f"{query_geneid} - {og_level} - {err}")
@@ -42,7 +46,7 @@ def multiple_levels(
                 continue
         else:
             try:
-                pipeline.main_pipeline(config, uniprot_id=gene_id)
+                pipeline.orthogroup_pipeline(config, uniprot_id=gene_id)
             except ValueError as err:
                 traceback.print_exc()
                 # logger.error(f"{query_geneid} - {og_level} - {err}")
@@ -52,7 +56,6 @@ def multiple_levels(
                 print(f"{gene_id} - {og_level} - {err}")
                 print(f"skipping {gene_id} - {og_level}")
                 continue
-
 
 
 def main(
@@ -71,8 +74,12 @@ def main(
             shutil.rmtree(config.main_output_folder)
         else:
             print("WARNING: OUTPUT FOLDER ALREADY EXISTS")
-            print("any files that already exist will either be overwritten or skipped (depending on the overwrite flag in the config file)")
-            print("set clear_output_folder=True to delete the folder and re-run the pipeline if you want to start fresh")
+            print(
+                "any files that already exist will either be overwritten or skipped (depending on the overwrite flag in the config file)"
+            )
+            print(
+                "set clear_output_folder=True to delete the folder and re-run the pipeline if you want to start fresh"
+            )
 
     if odb_gene_id_column is not None:
         table = table.dropna(subset=[odb_gene_id_column])

@@ -1,9 +1,9 @@
 # %%
 from pathlib import Path
 
-import local_conservation_analysis_pipeline.group_conservation_objects as group_tools
+import slim_conservation_scoring.pipeline.group_conservation_objects as group_tools
 import pandas as pd
-import local_seqtools.general_utils as tools
+import slim_conservation_scoring.seqtools.general_utils as tools
 import numpy as np
 import re
 import concurrent.futures

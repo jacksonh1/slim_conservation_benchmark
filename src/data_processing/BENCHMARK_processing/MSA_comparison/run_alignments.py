@@ -7,8 +7,8 @@ import pandas as pd
 from Bio import SeqIO, Seq
 import copy
 
-import local_seqtools.cli_wrappers as cli
-from local_seqtools import general_utils as tools
+import orthodb_tools.tools.cli_wrappers as cli
+from orthodb_tools.tools import general_utils as tools
 from Bio.SeqRecord import SeqRecord
 
 LEVELS = ["Vertebrata", "Metazoa", "Tetrapoda"]

@@ -15,7 +15,7 @@ You then have to add the path to the downloaded iupred folder to the file `./src
 I cannot release iupred here because it is not open source (however it is free for academic users)
 <br>
 
-3 different python tools were used to perform the benchmark analysis contained in 2 different environments. Be careful to set up the environments correctly and read the readme files in the `src` subdirectories for more information. to set up the environments, follow the instructions in the [./environment/readme.md](./environment/readme.md) file.
+3 different python tools were used to perform the benchmark analysis contained in 2 different environments. Be careful to set up the environments correctly and read the readme files in the `src` subdirectories for more information. to set up the environments, follow the instructions in the [./environment](./environment) readme file.
 
 <!-- ### reproducing the benchmark
 To reproduce the benchmark, you will need to set up the environments described above. To make this as reproducible as possible, I've included copies of the `slim_conservation` source code in this repo (in the [tools](./tools) directory) so that the exact version of the code used in the benchmark is available. The `kibby` code is not included here, but you can find it at the link above.
