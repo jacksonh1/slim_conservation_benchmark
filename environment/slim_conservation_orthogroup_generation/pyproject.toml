@@ -26,6 +26,13 @@ dependencies = [
 [project.urls]
 "Source" = "https://github.com/jacksonh1/slim_conservation_orthogroup_generation"
 
+[project.scripts]
+odb_groups-create_filemap = "orthodb_tools.scripts.create_filemap:main_cli"
+odb_groups-map_uniprotid = "orthodb_tools.scripts.map_uniprotid:main_cli"
+odb_groups-orthogroup_pipeline = "orthodb_tools.scripts.orthogroup_pipeline:main_cli"
+odb_groups-pipeline_all_genes_in_species = "orthodb_tools.scripts.pipeline_all_genes_in_species:main_cli"
+odb_groups-pipeline_input_table = "orthodb_tools.scripts.pipeline_input_table:main_cli"
+
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"

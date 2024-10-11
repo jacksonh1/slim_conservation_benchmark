@@ -1,1 +1,1 @@
-python "../../../local_scripts/conservation_analysis.py" -c "./params.yaml" -n 60
+slim_conservation_scoring-pipeline -c "./params.yaml" -n 60

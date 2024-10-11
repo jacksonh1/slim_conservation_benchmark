@@ -1,11 +1,7 @@
 
-scripts/notebooks were run with these environments:
-- slim_conservation_orthogroup_generation - [link](https://github.com/jacksonh1/slim_conservation_orthogroup_generation)
-- kibby - [link](https://github.com/esbgkannan/kibby)
-
 The scripts/notebooks (in order of execution):
 - `./build_fasta_for_kibby.ipynb`
-    - environment: slim_conservation_orthogroup_generation
+    - environment: slim_conservation
     - build fasta file for all of the query protein sequences in the benchmark
 - `./run_kibby.sh`
     - environment: kibby

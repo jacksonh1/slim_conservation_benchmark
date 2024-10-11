@@ -1,6 +1,6 @@
 # %%
 from pathlib import Path
-from local_config import conservation_pipeline_parameters as conf
+from slim_conservation_scoring.config import conservation_pipeline_parameters as conf
 
 import pandas as pd
 from add_msa_scores_2_table import (

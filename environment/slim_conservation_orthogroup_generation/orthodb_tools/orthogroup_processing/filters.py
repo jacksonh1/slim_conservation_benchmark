@@ -15,11 +15,14 @@ def filter_seqs_with_nonaa_chars(
     """
     filtered_og_seq_dict = {}
     for seq_id, seq in seqrecord_dict.items():
-        break_flag = False
-        for char in prohibited_chars:
-            if char in seq:
-                break_flag = True
-        if break_flag:
+        # break_flag = False
+        # for char in prohibited_chars:
+        #     if char in seq:
+        #         break_flag = True
+        # if break_flag:
+        #     continue
+        s = str(seq.seq)
+        if any(char in s for char in prohibited_chars):
             continue
         filtered_og_seq_dict[seq_id] = copy.deepcopy(seq)
     return filtered_og_seq_dict

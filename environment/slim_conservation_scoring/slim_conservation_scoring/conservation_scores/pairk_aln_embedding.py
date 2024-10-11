@@ -34,7 +34,9 @@ def main(
             for i in fl_seqdict_unaligned.keys()
         }
         for i in precomputed_embeddings.keys():
-            assert precomputed_embeddings[i].shape[0] == len(fl_seqdict_unaligned[i])+2, f"precomputed embedding for {i} has shape {precomputed_embeddings[i].shape} but sequence has length {len(fl_seqdict_unaligned[i])}"
+            assert (
+                precomputed_embeddings[i].shape[0] == len(fl_seqdict_unaligned[i]) + 2
+            ), f"precomputed embedding for {i} has shape {precomputed_embeddings[i].shape} but sequence has length {len(fl_seqdict_unaligned[i])}"
     else:
         precomputed_embeddings = None
     alnres = pairk.pairk_alignment_embedding_distance(

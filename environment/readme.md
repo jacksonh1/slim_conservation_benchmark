@@ -57,6 +57,11 @@ To install both tools in the same environment:
 Some of the benchmark uses the kibby tool, follow the instructions at the kibby [repository](https://github.com/esbgkannan/kibby) to set up the environment. the `conservation_from_fasta.py` script from that repo was executed to get conservation scores.
 
 
+
+# exact environment used
+
+The exact environment used to run the benchmark is in the file `./exact_environment_used.yml`
+
 <!-- - run these commands: -->
 <!--     ```bash -->
 <!--     conda create --name slim_conservation -->

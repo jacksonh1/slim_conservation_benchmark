@@ -5,8 +5,9 @@ This work was supported by the National Institutes of Health under Award Number 
 
 # Table of contents
 - [Table of contents](#table-of-contents)
-- [orthoDB groups for conservation analysis](#orthodb-groups-for-conservation-analysis)
+- [orthologous groups for conservation analysis](#orthologous-groups-for-conservation-analysis)
   - [Pipeline overview:](#pipeline-overview)
+  - [note on future improvements](#note-on-future-improvements)
 - [necessary background knowledge (beginner level)](#necessary-background-knowledge-beginner-level)
 - [setup TL;DR:](#setup-tldr)
 - [Usage](#usage)
@@ -20,7 +21,7 @@ This work was supported by the National Institutes of Health under Award Number 
 - [source code](#source-code)
 - [tools used (and links):](#tools-used-and-links)
 
-# orthologouw groups for conservation analysis
+# orthologous groups for conservation analysis
 This repository contains tools to retrieve and process ortholog groups from a local copy of the orthoDB database files ([link](https://www.orthodb.org/)). The pipeline finds a protein of interest in the database, retrieves its homologous proteins as defined by the orthoDB, and processes the group of homologs in preparation for downstream [conservation analysis](https://github.com/jacksonh1/motif_conservation_in_IDRs). <br>
 - Note: I refer  to these sequences as orthologs in many places throughout this repo but you could argue that it's more accurate to refer to them as homologs depending on how you define the term. I use the term orthologs because that is what orthoDB calls them. see orthoDB [terminology](https://www.ezlab.org/orthodb_userguide.html#terminology)
 
@@ -41,10 +42,13 @@ This repository contains tools to retrieve and process ortholog groups from a lo
 8. **output** the alignment and the ortholog group information in a directory structure that is compatible with the conservation analysis pipeline (link)
     - the group information is output in the form of a json file that can be imported into python
 
+## note on future improvements
+- I wanted to avoid using a workflow manager (e.g. snakemake or nextflow) and a more sophisticated database structure because I wanted to keep the pipeline easy for anyone to use, however, I think the result is potentially more confusing. If I had the time, I might refactor everything to use a workflow manager to handle the pipeline and a different database structure to store the data. It might make the pipeline more efficient and easier to use. <br>
+
 # necessary background knowledge (beginner level)
 - **basic use of a unix terminal** (i.e. navigating directories, running scripts, etc.). If you are unfamiliar with this, here's where to start:
   - Make sure you can open a terminal.
-    - **windows** - I recommend using the windows subsystem for linux (WSL) and using the default ubuntu linux distribution (https://learn.microsoft.com/en-us/windows/wsl/install). Note, I know close to nothing about windows, which is why I'm recommending using wsl, which is basically just linux within windows. People who are knowlegable about windows may not have to do this.
+    - **windows** - I recommend using the windows subsystem for linux (WSL) and using the default ubuntu linux distribution (https://learn.microsoft.com/en-us/windows/wsl/install). Note, I know very little about windows, which is why I'm recommending using wsl, which is basically just linux within windows. People who are knowlegable about windows may not have to do this.
     - **Mac** - you can use the default terminal app under applications/utilities
     - **Linux** - you probably already know how to use the terminal
   - do a quick tutorial to get the basics of navigating directories and running scripts.
@@ -75,7 +79,7 @@ This repository contains tools to retrieve and process ortholog groups from a lo
           ```
    - Linux/windows WSL - `conda env create -f environment_linux.yml` <br>
 6. activate the environment: `conda activate slim_conservation_orthogroup_generation` <br>
-7. install the local package: `pip install -e .` <br>
+7. install the local package: `pip install .` <br>
 8. generate the SQLite databases: `bash ./prepare_data.sh` <br>
    - *Note: This creates separate databases for each file. You could easily make one database with all of the tables, however I tried this and it was significantly slower to query. I don't know why.* <br>
 
@@ -184,7 +188,19 @@ There are a few scripts in the `./orthodb_tools/scripts/` directory that are use
     - outputs a new table with the orthoDB gene ids added as a new column
 
 For any of the above, you can run `python <script_name>.py --help` to see the help message. <br>
-For easy access to the scripts, you can add the `./orthodb_tools/scripts/` directory to your PATH. <br>
+
+In the current version of these tools, the scripts should be accessible in your path as long as the environment in which you pip installed the tools is activated. They are installed as scripts in the environment and are accessible with the `odb_groups-` prefix. For example:
+
+| script                             | command                                    |
+| ---------------------------------- | ------------------------------------------ |
+| `orthogroup_pipeline.py`           | `odb_groups-orthogroup_pipeline`           |
+| `pipeline_all_genes_in_species.py` | `odb_groups-pipeline_all_genes_in_species` |
+| `pipeline_input_table.py`          | `odb_groups-pipeline_input_table`          |
+| `create_filemap.py`                | `odb_groups-create_filemap`                |
+| `map_uniprotid.py`                 | `odb_groups-map_uniprotid`                 |
+
+<br>
+If not, you can add the `./orthodb_tools/scripts/` directory to your PATH. <br>
 example of how to add this directory to your path via your bashrc file:
 ```bash
 echo 'export PATH=$PATH:/path/to/this/repo/orthodb_tools/scripts/' >> ~/.bashrc

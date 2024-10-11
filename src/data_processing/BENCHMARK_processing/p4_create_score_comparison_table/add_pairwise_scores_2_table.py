@@ -125,10 +125,10 @@ def process_row(row, params: Params):
         row["errors"] = str(e)
         return row
     row["flanked_hit_sequence"] = scores.flank_hit_sequence
-    row["flanked_hit_scores"] = scores.flank_hit_scores
-    row["flanked_hit_z_scores"] = scores.flank_hit_z_scores
-    row["hit_scores"] = scores.hit_scores
-    row["hit_z_scores"] = scores.hit_z_scores
+    row["flanked_hit_scores"] = [float(i) for i in scores.flank_hit_scores]
+    row["flanked_hit_z_scores"] = [float(i) for i in scores.flank_hit_z_scores]
+    row["hit_scores"] = [float(i) for i in scores.hit_scores]
+    row["hit_z_scores"] = [float(i) for i in scores.hit_z_scores]
     row["n_bg_scores"] = len(scores.background_scores)
     row["bg_STD"] = np.std(scores.background_scores)
     row["bg_mean"] = np.mean(scores.background_scores)

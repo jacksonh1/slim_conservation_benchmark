@@ -111,7 +111,7 @@ def run_alignment_from_keydict(
             n_align_threads=n_align_threads,
         )
         with open(clustal_output_file, "w") as f:
-            SeqIO.write(clustal_aln_seqrecords, f, "fasta")
+            SeqIO.write(clustal_aln_seqrecords, f, "fasta") # type: ignore
     muscle_output_file = muscle_output_folder / f"{aln_file.name}"
     if muscle_output_file.exists():
         print(f"Muscle alignment file {muscle_output_file} already exists")
@@ -123,7 +123,7 @@ def run_alignment_from_keydict(
             n_align_threads=n_align_threads,
         )
         with open(muscle_output_file, "w") as f:
-            SeqIO.write(muscle_aln_seqrecords, f, "fasta")
+            SeqIO.write(muscle_aln_seqrecords, f, "fasta") # type: ignore
 
 
 def main(
@@ -137,11 +137,7 @@ def main(
 ):
     df = pd.read_csv(table_file)
     df = df[df["critical_error"].isnull()]
-    # filter out this really long gene (will be removed in the next benchmark)
-    # it's ank3 which is not really a protein that I'm interested in anyway.
-    # It has a lot of isoforms and the corresponding isoform in each organism
-    # is probably all really underdetermined
-    df = df[df["gene_id"] != "9606_0:0027f1"]
+    df = df[df["gene_id"] != "9606_0:0027f1"] # remove ANK3 as it is really long and takes an extremely long time to align
     gene_ids = list(df[df["verified interaction"]]["gene_id"].unique())
     with open(database_key_file, "r") as f:
         database_key = json.load(f)

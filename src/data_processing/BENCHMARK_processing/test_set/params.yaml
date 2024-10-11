@@ -1,8 +1,8 @@
-clear_files: false
+clear_files: true
 output_folder: "../../../../benchmark/benchmark_v4/test/output"
 database_filekey: "../../../../benchmark/benchmark_v4/p2_orthogroups/orthogroups/database_key.json"
 table_file: "../../../../benchmark/benchmark_v4/p1_table/benchmark_table_testset.csv"
-new_index: false
+new_index: true
 steps_to_run:
   - "s1"
   - "s2"
@@ -45,11 +45,12 @@ pairk_embedding_aln_methods:
     function_name: "pairk_aln_embedding"
     function_params:
       overwrite: false
+      embedding_file_path: "/mnt/shared/jch/embeddings_tmp/"
     lflank: 0
     rflank: 0
     level: "Vertebrata"
 esm_params:
-  processes: 1
+  processes: 14
 multilevel_plot_params:
   score_key: null
   score_type: "z_score"

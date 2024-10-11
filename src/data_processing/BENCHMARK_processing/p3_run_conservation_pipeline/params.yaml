@@ -37,22 +37,15 @@ msa_score_methods:
       overwrite: false
 
 pairk_aln_methods:
-  pairk_aln_lf5_rf5_edssmat50:
-    function_name: "pairk_aln"
-    function_params:
-      overwrite: false
-      matrix_name: "EDSSMat50"
-    lflank: 5
-    rflank: 5
     # level: "Vertebrata"
-  pairk_aln_lf5_rf5_blosum62:
-    function_name: "pairk_aln"
-    function_params:
-      overwrite: false
-      matrix_name: "BLOSUM62"
-    lflank: 5
-    rflank: 5
-    level: "Vertebrata"
+  # pairk_aln_lf5_rf5_blosum62:
+  #   function_name: "pairk_aln"
+  #   function_params:
+  #     overwrite: false
+  #     matrix_name: "BLOSUM62"
+  #   lflank: 5
+  #   rflank: 5
+  #   level: "Vertebrata"
   pairk_aln_lf0_rf0_blosum62:
     function_name: "pairk_aln"
     function_params:
@@ -68,22 +61,6 @@ pairk_aln_methods:
       matrix_name: "grantham_similarity_norm"
     lflank: 0
     rflank: 0
-    level: "Vertebrata"
-  pairk_aln_lf2_rf2_edssmat50:
-    function_name: "pairk_aln"
-    function_params:
-      overwrite: false
-      matrix_name: "EDSSMat50"
-    lflank: 2
-    rflank: 2
-    level: "Vertebrata"
-  pairk_aln_lf10_rf10_edssmat50:
-    function_name: "pairk_aln"
-    function_params:
-      overwrite: false
-      matrix_name: "EDSSMat50"
-    lflank: 10
-    rflank: 10
     level: "Vertebrata"
   pairk_aln_lf0_rf0_edssmat50:
     function_name: "pairk_aln"
@@ -101,22 +78,53 @@ pairk_aln_methods:
     lflank: 0
     rflank: 0
     level: "Vertebrata"
-
-pairk_embedding_aln_methods:
-  pairk_aln_embedding_lf5_rf5:
-    function_name: "pairk_aln_embedding"
+  pairk_aln_lf2_rf2_edssmat50:
+    function_name: "pairk_aln"
     function_params:
       overwrite: false
+      matrix_name: "EDSSMat50"
+    lflank: 2
+    rflank: 2
+    level: "Vertebrata"
+  pairk_aln_lf5_rf5_edssmat50:
+    function_name: "pairk_aln"
+    function_params:
+      overwrite: false
+      matrix_name: "EDSSMat50"
     lflank: 5
     rflank: 5
+  pairk_aln_lf10_rf10_edssmat50:
+    function_name: "pairk_aln"
+    function_params:
+      overwrite: false
+      matrix_name: "EDSSMat50"
+    lflank: 10
+    rflank: 10
+    level: "Vertebrata"
+
+pairk_embedding_aln_methods:
+  # pairk_aln_embedding_lf5_rf5:
+  #   function_name: "pairk_aln_embedding"
+  #   function_params:
+  #     overwrite: false
+  #     embedding_file_path: "/mnt/shared/jch/embeddings_tmp/"
+  #   lflank: 5
+  #   rflank: 5
     # level: "Vertebrata"
   pairk_aln_embedding_lf0_rf0:
     function_name: "pairk_aln_embedding"
     function_params:
       overwrite: false
+      embedding_file_path: "/mnt/shared/jch/embeddings_tmp/"
     lflank: 0
     rflank: 0
-    # level: "Vertebrata"
+  pairk_aln_dr_bert_embedding_lf0_rf0:
+    function_name: "pairk_aln_embedding"
+    function_params:
+      overwrite: false
+      embedding_file_path: "/mnt/shared2/jch/dr_bert_embeddings_tmp/"
+    lflank: 0
+    rflank: 0
 
 pairk_conservation_params:
   kmer_conservation_function_name: "pairk_conservation"
@@ -125,7 +133,7 @@ pairk_conservation_params:
   bg_kmer_cutoff: 10
 
 esm_params:
-  processes: 6
+  processes: 28
   # threads: 10
   device: "cuda"
 

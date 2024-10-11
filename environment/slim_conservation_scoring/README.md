@@ -7,7 +7,7 @@ This work was supported by the National Institutes of Health under Award Number 
 # Table of Contents
 - [Table of Contents](#table-of-contents)
 - [motif conservation in disordered regions](#motif-conservation-in-disordered-regions)
-- [note on pipeline structure](#note-on-pipeline-structure)
+  - [note on future improvements](#note-on-future-improvements)
 - [setup TL;DR:](#setup-tldr)
 - [database setup](#database-setup)
 - [Using the pipeline](#using-the-pipeline)
@@ -47,8 +47,8 @@ The basic idea is that you precalculate ortholog groups for conservation analysi
 conservation can be calculated via traditional MSA-based methods or via [pairk](https://github.com/jacksonh1/pairk).
 See [conservation scores](#conservation-scores) for more information on the conservation scores that can be calculated and see [pairk's documentation](https://pairk.readthedocs.io/en/latest/) for more information on pairk.
 
-# note on pipeline structure
-- I wanted to avoid using a workflow manager (e.g. snakemake or nextflow) and a more sophisticated database structure because I wanted to keep the pipeline easy for anyone to use, however, I think the result is potentially more confusing. If I had the time to redo it, I would probably use a workflow manager to handle the pipeline and a different database structure to store the data and results.
+## note on future improvements
+- I wanted to avoid using a workflow manager (e.g. snakemake or nextflow) and a more sophisticated database structure because I wanted to keep the pipeline easy for anyone to use, however, I think the result is potentially more confusing. If I had the time, I might refactor everything to use a workflow manager to handle the pipeline and a different database structure to store the data. It might make the pipeline more efficient and easier to use. <br>
 
 # setup TL;DR:
 
@@ -133,7 +133,7 @@ See `./examples/table_annotation/` for an example. <br>
 
 ## pipeline overview
 
-The main pipeline is executed via the script `./slim_conservation_scoring/pipeline/conservation_pipeline.py`, which executes the following steps (code in `./slim_conservation_scoring/pipeline/`) for each row in the input table:
+The main pipeline is executed via the script `./slim_conservation_scoring/scripts/pipeline.py`, which executes the following steps (code in `./slim_conservation_scoring/pipeline/`) for each row in the input table:
 - s1. setup the analysis folder (create folders and files for each row in the input table)
     - a reference index is used to keep track of each row in the table. Each row is associated with a unique reference index.
     - For each row, the gene id of the protein is looked up in the database key to find the alignment file(s) for the protein and its orthologs
@@ -158,7 +158,7 @@ The main pipeline is executed via the script `./slim_conservation_scoring/pipeli
 
 
 ## pipeline parameters
-The main pipeline is run via the file `./slim_conservation_scoring/pipeline/conservation_pipeline.py`. The pipeline parameters are specified in a yaml file, for example (example is default configuration; all entries except database_filekey, table_file, and output_folder are optional):
+The main pipeline is run via the file `./slim_conservation_scoring/scripts/pipeline.py`. The pipeline parameters are specified in a yaml file, for example (example is default configuration; all entries except database_filekey, table_file, and output_folder are optional):
 ```yaml
 database_filekey: "../../data/example_orthogroup_database/human_odb_groups/database_key.json"
 table_file: "./table.csv"
@@ -324,7 +324,7 @@ clean_analysis_files: false
 - `pairk_embedding_aln_methods`:
   - Any embedding-based `pairk` alignment methods are added here. The parameters are formated in the same way as the `pairk_aln_methods`
 - `esm_params`:
-  - `processes`: the number of processes to use for the ESM embedding (default 4). This is the number of concurrent table rows that are processed at once with the embedding method. It is included here as a separate parameter because the ESM embedding method uses a lot of memory. This parameter overrides the `n_cores` parameter in the main pipeline function (`./slim_conservation_scoring/pipeline/conservation_pipeline.py`) and command line script (`./slim_conservation_scoring/scripts/conservation_analysis.py`).
+  - `processes`: the number of processes to use for the ESM embedding (default 4). This is the number of concurrent table rows that are processed at once with the embedding method. It is included here as a separate parameter because the ESM embedding method uses a lot of memory. This parameter overrides the `n_cores` parameter in the main pipeline function (`./slim_conservation_scoring/pipeline/conservation_pipeline.py`) and command line script (`./slim_conservation_scoring/scripts/pipeline.py`).
   - `threads`: the number of threads to use for the ESM embedding (default 1)
   - `device`: the device to use for the ESM embedding, must be 'cpu' or 'cuda' (default "cuda")
 - `pairk_conservation_params`: parameters for calculating conservation scores from the pairk alignment results. Only applies to results from `pairk_aln_methods` and `pairk_embedding_aln_methods`.

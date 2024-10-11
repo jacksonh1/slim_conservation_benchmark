@@ -93,7 +93,7 @@ def process_row(row, score_key, level):
             str(score_o.z_score_failure),
         )
     else:
-        row["hit_z_scores"] = score_o.hit_z_scores
+        row["hit_z_scores"] = [float(i) for i in score_o.hit_z_scores]
         row["n_bg_scores"] = len(score_o.bg_scores)
         row["bg_STD"] = np.std(score_o.bg_scores)
         row["bg_mean"] = np.mean(score_o.bg_scores)

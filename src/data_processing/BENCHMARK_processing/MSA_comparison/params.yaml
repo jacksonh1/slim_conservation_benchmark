@@ -41,7 +41,7 @@ aln_slice_params:
   n_flanking_aas: 20
   # whole_idr: true
 table_annotation_params:
-  score_key_for_table: aln_shannon_entropy
+  score_key_for_table: "aln_shannon_entropy"
   # motif_regex: "P.P.E"
   levels:
     # - "Eukaryota"

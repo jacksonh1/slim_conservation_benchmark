@@ -7,10 +7,9 @@ from orthodb_tools.config import orthodb_pipeline_parameters
 
 
 import orthodb_tools.orthogroup_processing.pipeline as pipeline
-from orthodb_tools.config import orthodb_pipeline_parameters
 
 
-if __name__ == "__main__":
+def main_cli():
     # get the default parameters just to print them in the help message
     # this is a bit hacky but it works
     # filter out the private attributes (those that start with '_') because they
@@ -58,3 +57,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     config = pipeline.load_config(args.config)
     pipeline.orthogroup_pipeline(config, args.uniprot_id, args.odb_gene_id)
+
+
+if __name__ == "__main__":
+    main_cli()

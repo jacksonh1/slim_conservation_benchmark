@@ -82,6 +82,7 @@ with open(str(DATABASE_KEY_FILE).replace(".json", "-MSA_comparison.json"), "w") 
 df = pd.read_csv(TABLE_FILE)
 df=df[df['critical_error'].isnull()]
 df = df[df['verified interaction']]
+df = df[df["gene_id"] != "9606_0:0027f1"]
 df = df.drop(columns=['critical_error', 'json_file'])
 output_folder = Path("../../../../benchmark/benchmark_v4/MSA_comparison/")
 output_folder.mkdir(exist_ok=True, parents=True)

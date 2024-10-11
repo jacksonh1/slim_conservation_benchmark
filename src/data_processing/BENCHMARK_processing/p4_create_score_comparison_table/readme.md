@@ -4,6 +4,6 @@ The pipeline is designed to add a few scores to a final table however, for the b
 
 commands run:
 ```bash
-conda activate slim_conservation_scoring
+conda activate slim_conservation
 nohup python create_score_table_wide_form.py > create_score_table_wide_form.out &
 ```

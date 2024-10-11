@@ -6,7 +6,12 @@ environment/
 figures/figure1/example_alignments/RIAM/
 figures/figure1/example_alignments/LPP/
 figures/figure1/example_alignments/ena_motif_alignments/
+data/DR-BERT/**
 
+*.out
+*.err
+*.log
+*.zip
 *.html
 *.eps
 .stignore

@@ -4,13 +4,12 @@ channels:
   - bioconda
   - conda-forge
 dependencies:
-  - python>=3.10
   - python-dotenv
   - openpyxl
   - attrs
   - babel
   - beautifulsoup4
-  - biopython
+  - biopython>=1.8
   - importlib_resources
   - ipykernel
   - ipython
@@ -31,5 +30,6 @@ dependencies:
       - alfpy
       - fair-esm
       - logomaker
+      - regex
       - tqdm
       - transformers
